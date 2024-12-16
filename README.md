@@ -1,18 +1,18 @@
 # 🌍 Eulle Stann Casaquite
 
-Welcome to my cartography portfolio! I am passionate about creating meaningful and visually engaging maps that communicate complex geospatial data effectively. This portfolio showcases my expertise in cartographic design, GIS analysis, and geovisualization.
+Welcome to my cartography portfolio! I am passionate about creating meaningful and visually engaging maps that communicate geospatial data effectively. 
 
 ---
 
 ## 🗺️ About Me
-I am a [Your Profession/Role] with a strong background in geospatial sciences and cartographic design. With [X years of experience] in GIS and mapping, I specialize in [key specialties, e.g., geohazard mapping, remote sensing, community-focused GIS solutions].
+I am a [ with a strong background in geospatial sciences and cartographic design. With [X years of experience] in GIS and mapping, I specialize in [key specialties, e.g., geohazard mapping, remote sensing, community-focused GIS solutions].
 
 ### Highlights:
-- **Education**: [Your Degree, e.g., B.S. in Geography, Minor in GIScience, University]
-- **Focus Areas**: Geovisualization, geohazard risk communication, remote sensing, community mapping.
-- **Tools**: ArcGIS, QGIS, Leaflet, Mapbox, Python (GeoPandas, Rasterio), Adobe Illustrator.
+- **Education**: B.A. in Geology, Geography, Minor in GIS and Technology - Expected Graduation Date: May 2025 
+- **Focus Areas**: Cartography and Geovisualization, Geohazard Risk communication, Structural Geology, Volcanology.
+- **Tools**: ArcGIS Pro, PIX4D Mapper, Adobe Illustrator, Python.
 
-[📄 **View My Resume**](CasaquiteResume.pdf)
+[📄 **Resume**](CasaquiteResume.pdf)
 
 ---
 
@@ -23,28 +23,11 @@ Explore my projects, from interactive maps to static cartographic designs. Each 
 
 ---
 
-## 📜 Skills and Expertise
-### GIS & Remote Sensing:
-- Geospatial analysis using ArcGIS, QGIS, and Python.
-- Extracting and visualizing insights from Sentinel-2 and Landsat imagery.
-  
-### Cartographic Design:
-- Designing intuitive, visually compelling maps with Adobe Illustrator, Mapbox, and Leaflet.
-- Custom symbologies and culturally localized geovisualizations.
-
-### Community Engagement:
-- Building interactive tools and dashboards for disaster risk awareness.
-- Hosting workshops to empower communities through geospatial knowledge.
-
----
-
 ## 🔗 Let's Connect!
-I am always looking for new opportunities and collaborations in cartography and GIS. Feel free to reach out!
+I am always looking for new opportunities to learn and collaborate in cartography and GIS. Feel free to reach out!
 
-- **Email**: [your.email@example.com](mailto:your.email@example.com)
-- **LinkedIn**: [Your LinkedIn Profile](#)
-- **Portfolio Website**: [YourWebsite.com](#)
-- **Twitter**: [@YourHandle](#)
+- **Email**: [eullecasaquite21@augustana.edu](eullecasaquite21@augustana.edu)
+- **LinkedIn**: [Eulle Stann Casaquite](www.linkedin.com/in/eulle-stann-casaquite-8477341ab)
 
 ---
 
