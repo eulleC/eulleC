@@ -35,4 +35,4 @@ I am always looking for new opportunities to learn and collaborate in cartograph
 
 ---
 
-> *“Para kay Nanay kag Tatay, kag tanan nga nag nagpati saakon”*
+> *“Still work in progress”*
