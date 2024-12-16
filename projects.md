@@ -8,7 +8,7 @@ Welcome to my projects page! Here, you'll find a collection of my cartographic a
 **Description**: Developed a geospatial tool to calculate volcanic hazard exposure using Sentinel-2 imagery. This project aimed to improve disaster preparedness by identifying at-risk areas with high-resolution imagery and GIS analysis.
 
 ### Embedded Map:
-<embed src="maps/geohazard-risk-map.pdf" type="application/pdf" width="100%" height="500px" />
+<embed src="GrandCanyon.pdf" type="application/pdf" width="100%" height="500px" />
 
 **Key Tools**: ArcGIS Pro, Sentinel-2 imagery, Python.
 
