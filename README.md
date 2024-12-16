@@ -12,7 +12,7 @@ I am a [Your Profession/Role] with a strong background in geospatial sciences an
 - **Focus Areas**: Geovisualization, geohazard risk communication, remote sensing, community mapping.
 - **Tools**: ArcGIS, QGIS, Leaflet, Mapbox, Python (GeoPandas, Rasterio), Adobe Illustrator.
 
-[📄 **View My Resume**](resume.pdf)
+[📄 **View My Resume**](CasaquiteResume.pdf)
 
 ---
 
