@@ -1,11 +1,8 @@
-# 🌍 Eulle Stann Casaquite
+# Eulle Stann Casaquite
 
-Welcome to my cartography portfolio! I am passionate about creating meaningful and visually engaging maps that communicate geospatial data effectively. 
+Welcome to my cartography portfolio! I am a senior student at Augustana College pursuing a degree in Geography, Geology and GIS. Over the past few years, I have developed a strong passion for geospatial analysis and cartography, with a focus on using geospatial data to adress geologic challenges. I wish to continue my academic pursuit and passion by getting admitted to a graduate program that aligns with my goals. 
 
 ---
-
-## 🗺️ About Me
-I am a [ with a strong background in geospatial sciences and cartographic design. With [X years of experience] in GIS and mapping, I specialize in [key specialties, e.g., geohazard mapping, remote sensing, community-focused GIS solutions].
 
 ### Highlights:
 - **Education**: B.A. in Geology, Geography, Minor in GIS and Technology - Expected Graduation Date: May 2025 
@@ -33,10 +30,9 @@ I am always looking for new opportunities to learn and collaborate in cartograph
 
 ## 🛠️ Repository Contents
 - **`resume.pdf`**: My professional resume.
-- **`projects.md`**: A detailed list of my cartographic and GIS projects.
-- **`/maps`**: A collection of interactive and static maps.
-- **`/assets`**: Images, icons, and other assets used in the portfolio.
+- **`projects.md`**: Presentation of my cartography projects.
+- **`/maps`**: Collection of my maps in png format.
 
 ---
 
-> *“Maps are a way to communicate stories and reveal the unseen.”* – [Your Name]
+> *“Para kay Nanay kag Tatay, kag tanan nga nag nagpati saakon”*
