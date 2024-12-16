@@ -1,53 +1,40 @@
-# 🌍 Projects Page
+# Projects
 
-## 🏞️ Southeast Asia Hazard Map
-**Description**: Visualizing geohazard risks across Southeast Asia.
 
-![Southeast Asia Hazard Map](maps/Casaquite_SouthEastAsiaFinal2-1.png)
-
-## 🏞️ Southeast Asia Hazard Map
-**Description**: Visualizing geohazard risks across Southeast Asia.
-
-![Southeast Asia Hazard Map](maps/Casaquite_MetroManila-1.png)
-
----
-## 🌋 Geohazard Risk Mapping
-**Description**: Developed a geospatial tool to calculate volcanic hazard exposure using Sentinel-2 imagery.
-
-![Geohazard Risk Map](maps/Casaquite_PhilippinesGenRefFinal-1.png)
+## National Geographic Style Southeast Asia Map
+![1](maps/Casaquite_SouthEastAsiaFinal2-1.png)
 
 ---
 
-## 🏞️ Southeast Asia Hazard Map
-**Description**: Visualizing geohazard risks across Southeast Asia.
+## National Geographic Style Metro Manila Cities Map
+![2](maps/Casaquite_MetroManila-1.png)
 
-![Southeast Asia Hazard Map](maps/Casaquite_BathymetricMap-1.png)
+---
+## Philippines General Reference Map
+![3](maps/Casaquite_PhilippinesGenRefFinal-1.png)
 
 ---
 
-## 🏜️ Grand Canyon Cartographic Design
-**Description**: A topographic and geological map of the Grand Canyon.
-
-![Grand Canyon Map](maps/GrandCanyon-1.png)
+## Philippine Trench Bathymetric Map
+![4](maps/CasaquiteBathymetricMap-1.png)
 
 ---
 
-## 🏜️ Grand Canyon Cartographic Design
-**Description**: A topographic and geological map of the Grand Canyon.
-
-![Grand Canyon Map](maps/11122024Final-1.png)
+## Grand Canyon General Reference Map
+![5](maps/GrandCanyon-1.png)
 
 ---
 
-## 🏜️ Grand Canyon Cartographic Design
-**Description**: A topographic and geological map of the Grand Canyon.
-
-![Grand Canyon Map](maps/SubsurfaceMapDraftFinal2-1.png)
+## Uranium Mining Thematic Map
+![6](maps/11122024Final-1.png)
 
 ---
 
-## 🏜️ Grand Canyon Cartographic Design
-**Description**: A topographic and geological map of the Grand Canyon.
+## Uranium Mining Subsurface Map
+![7](maps/SubsurfaceMapDraftFinal2-1.png)
 
-![Grand Canyon Map](maps/BrightAngelAB_Map2-1.png)
+---
+
+## Bright Angel Trail Map
+![8](maps/BrightAngelAB_Map2-1.png)
 
