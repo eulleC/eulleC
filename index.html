@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Maps</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .map-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .map-image {
+            width: 300px;
+            height: auto;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            transition: transform 0.3s ease;
+        }
+
+        .map-image:hover {
+            transform: scale(1.05);
+        }
+
+        #fullscreen-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #fullscreen-image {
+            max-width: 90%;
+            max-height: 90%;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Interactive Maps</h1>
+
+    <div class="map-gallery">
+        <img src="maps/Casaquite_SouthEastAsiaFinal2-1.png" alt="Southeast Asia Map" class="map-image" onclick="openFullscreen(this)">
+        <img src="maps/Casaquite_MetroManila-1.png" alt="Metro Manila Cities Map" class="map-image" onclick="openFullscreen(this)">
+        <img src="maps/Casaquite_PhilippinesGenRefFinal-1.png" alt="Philippines General Reference Map" class="map-image" onclick="openFullscreen(this)">
+        <img src="maps/CasaquiteBathymetricMap-1.png" alt="Philippine Trench Bathymetric Map" class="map-image" onclick="openFullscreen(this)">
+        <img src="maps/GrandCanyon-1.png" alt="Grand Canyon Map" class="map-image" onclick="openFullscreen(this)">
+        <img src="maps/11122024Final-1.png" alt="Uranium Mining Thematic Map" class="map-image" onclick="openFullscreen(this)">
+        <img src="maps/SubsurfaceMapDraftFinal2-1.png" alt="Uranium Mining Subsurface Map" class="map-image" onclick="openFullscreen(this)">
+        <img src="maps/BrightAngelAB_Map2-1.png" alt="Bright Angel Trail Map" class="map-image" onclick="openFullscreen(this)">
+    </div>
+
+    <!-- Fullscreen Viewer -->
+    <div id="fullscreen-container" onclick="closeFullscreen()">
+        <img id="fullscreen-image" src="" alt="Fullscreen Map">
+    </div>
+
+    <script>
+        function openFullscreen(imageElement) {
+            const fullscreenContainer = document.getElementById('fullscreen-container');
+            const fullscreenImage = document.getElementById('fullscreen-image');
+
+            fullscreenImage.src = imageElement.src; // Set the fullscreen image
+            fullscreenContainer.style.display = 'flex';
+        }
+
+        function closeFullscreen() {
+            const fullscreenContainer = document.getElementById('fullscreen-container');
+            fullscreenContainer.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
