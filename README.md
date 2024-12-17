@@ -18,6 +18,8 @@ Explore my projects, from interactive maps to static cartographic designs. Each 
 
 [🌐 **Visit the Projects Page**](projects.md)
 
+[🌐 **Visit the Other Page**](index.html)
+
 ---
 
 ## 🔗 Let's Connect!
