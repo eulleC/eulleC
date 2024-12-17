@@ -51,8 +51,21 @@
         }
 
         #fullscreen-image {
+            object-fit: contain; /* Ensures image fits properly */
             max-width: 90%;
             max-height: 90%;
+        }
+
+        /* Portrait images */
+        #fullscreen-image.portrait {
+            height: 90%;
+            width: auto;
+        }
+
+        /* Landscape images */
+        #fullscreen-image.landscape {
+            width: 90%;
+            height: auto;
         }
     </style>
 </head>
@@ -81,6 +94,18 @@
             const fullscreenImage = document.getElementById('fullscreen-image');
 
             fullscreenImage.src = imageElement.src; // Set the fullscreen image
+            fullscreenImage.onload = () => {
+                // Remove previous orientation class
+                fullscreenImage.classList.remove('portrait', 'landscape');
+
+                // Check aspect ratio and add the appropriate class
+                if (fullscreenImage.naturalHeight > fullscreenImage.naturalWidth) {
+                    fullscreenImage.classList.add('portrait');
+                } else {
+                    fullscreenImage.classList.add('landscape');
+                }
+            };
+
             fullscreenContainer.style.display = 'flex';
         }
 
