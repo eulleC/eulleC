@@ -51,15 +51,15 @@
         }
 
         #fullscreen-image {
-            object-fit: contain; /* Ensures image fits properly */
             max-width: 90%;
             max-height: 90%;
+            object-fit: contain;
         }
 
         /* Portrait images */
         #fullscreen-image.portrait {
-            height: 90%;
             width: auto;
+            height: 90%;
         }
 
         /* Landscape images */
@@ -98,12 +98,9 @@
                 // Remove previous orientation class
                 fullscreenImage.classList.remove('portrait', 'landscape');
 
-                // Check aspect ratio and add the appropriate class
-                if (fullscreenImage.naturalHeight > fullscreenImage.naturalWidth) {
-                    fullscreenImage.classList.add('portrait');
-                } else {
-                    fullscreenImage.classList.add('landscape');
-                }
+                // Determine orientation based on natural dimensions
+                const isPortrait = fullscreenImage.naturalHeight > fullscreenImage.naturalWidth;
+                fullscreenImage.classList.add(isPortrait ? 'portrait' : 'landscape');
             };
 
             fullscreenContainer.style.display = 'flex';
