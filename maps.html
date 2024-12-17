@@ -73,14 +73,14 @@
     <h1>Interactive Maps</h1>
 
     <div class="map-gallery">
-        <img src="maps/Casaquite_SouthEastAsiaFinal2-1.png" alt="Southeast Asia Map" class="map-image" onclick="openFullscreen(this)">
-        <img src="maps/Casaquite_MetroManila-1.png" alt="Metro Manila Cities Map" class="map-image" onclick="openFullscreen(this)">
-        <img src="maps/Casaquite_PhilippinesGenRefFinal-1.png" alt="Philippines General Reference Map" class="map-image" onclick="openFullscreen(this)">
-        <img src="maps/CasaquiteBathymetricMap-1.png" alt="Philippine Trench Bathymetric Map" class="map-image" onclick="openFullscreen(this)">
-        <img src="maps/GrandCanyon-1.png" alt="Grand Canyon Map" class="map-image" onclick="openFullscreen(this)">
-        <img src="maps/11122024Final-1.png" alt="Uranium Mining Thematic Map" class="map-image" onclick="openFullscreen(this)">
-        <img src="maps/SubsurfaceMapDraftFinal2-1.png" alt="Uranium Mining Subsurface Map" class="map-image" onclick="openFullscreen(this)">
-        <img src="maps/BrightAngelAB_Map2-1.png" alt="Bright Angel Trail Map" class="map-image" onclick="openFullscreen(this)">
+        <img src="maps/Casaquite_SouthEastAsiaFinal2-1.png" alt="Southeast Asia Map" class="map-image landscape" onclick="openFullscreen(this)">
+        <img src="maps/Casaquite_MetroManila-1.png" alt="Metro Manila Cities Map" class="map-image landscape" onclick="openFullscreen(this)">
+        <img src="maps/Casaquite_PhilippinesGenRefFinal-1.png" alt="Philippines General Reference Map" class="map-image portrait" onclick="openFullscreen(this)">
+        <img src="maps/CasaquiteBathymetricMap-1.png" alt="Philippine Trench Bathymetric Map" class="map-image landscape" onclick="openFullscreen(this)">
+        <img src="maps/GrandCanyon-1.png" alt="Grand Canyon Map" class="map-image landscape" onclick="openFullscreen(this)">
+        <img src="maps/11122024Final-1.png" alt="Uranium Mining Thematic Map" class="map-image landscape" onclick="openFullscreen(this)">
+        <img src="maps/SubsurfaceMapDraftFinal2-1.png" alt="Uranium Mining Subsurface Map" class="map-image portrait" onclick="openFullscreen(this)">
+        <img src="maps/BrightAngelAB_Map2-1.png" alt="Bright Angel Trail Map" class="map-image landscape" onclick="openFullscreen(this)">
     </div>
 
     <!-- Fullscreen Viewer -->
@@ -94,14 +94,17 @@
             const fullscreenImage = document.getElementById('fullscreen-image');
 
             fullscreenImage.src = imageElement.src; // Set the fullscreen image
-            fullscreenImage.onload = () => {
-                // Remove previous orientation class
-                fullscreenImage.classList.remove('portrait', 'landscape');
-
-                // Determine orientation based on natural dimensions
-                const isPortrait = fullscreenImage.naturalHeight > fullscreenImage.naturalWidth;
-                fullscreenImage.classList.add(isPortrait ? 'portrait' : 'landscape');
-            };
+            
+            // Remove previous orientation class
+            fullscreenImage.classList.remove('portrait', 'landscape');
+            
+            // Use the pre-defined class from the thumbnail
+            const orientationClass = Array.from(imageElement.classList)
+                .find(cls => ['portrait', 'landscape'].includes(cls));
+            
+            if (orientationClass) {
+                fullscreenImage.classList.add(orientationClass);
+            }
 
             fullscreenContainer.style.display = 'flex';
         }
