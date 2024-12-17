@@ -1,118 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Map Archive | Interactive Maps Collection</title>
+
     <style>
-        body {
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono&display=swap');
+
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        h1 {
-            margin: 20px 0;
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
             color: #333;
         }
 
-        .map-gallery {
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header {
+            padding: 20px 0;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .site-nav {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
+        }
+
+        .menu-list {
+            display: flex;
+            list-style-type: none;
+            gap: 30px;
+        }
+
+        .menu-item a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .menu-item a:hover {
+            color: #007bff;
+        }
+
+        .menu-item-active a {
+            color: #007bff;
+        }
+
+        .main {
+            padding: 30px 0;
+        }
+
+        .post-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
             padding: 20px;
         }
 
-        .map-image {
-            width: 300px;
-            height: auto;
-            cursor: pointer;
-            border: 1px solid #ddd;
+        .post-list-item {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        .post-list-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-img {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .post-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.3s ease;
         }
 
-        .map-image:hover {
+        .post-list-item:hover .post-img img {
             transform: scale(1.05);
         }
 
-        #fullscreen-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
+        .post-info {
+            padding: 15px;
         }
 
-        #fullscreen-image {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
+        .post-title a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
         }
 
-        /* Portrait images */
-        #fullscreen-image.portrait {
-            width: auto;
-            height: 90%;
+        .post-date {
+            color: #777;
+            font-size: 0.9em;
         }
 
-        /* Landscape images */
-        #fullscreen-image.landscape {
-            width: 90%;
-            height: auto;
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+
+        @media (max-width: 768px) {
+            .menu-list {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Interactive Maps</h1>
+    <div class="wrapper">
+        <div class="header">
+            <nav class="site-nav">
+                <ul class="menu-list">
+                    <li class="menu-item menu-item-active"><a href="#">All Maps</a></li>
+                </ul>
+            </nav>
+        </div>
 
-    <div class="map-gallery">
-        <img src="maps/Casaquite_SouthEastAsiaFinal2-1.png" alt="Southeast Asia Map" class="map-image landscape" onclick="openFullscreen(this)">
-        <img src="maps/Casaquite_MetroManila-1.png" alt="Metro Manila Cities Map" class="map-image landscape" onclick="openFullscreen(this)">
-        <img src="maps/Casaquite_PhilippinesGenRefFinal-1.png" alt="Philippines General Reference Map" class="map-image portrait" onclick="openFullscreen(this)">
-        <img src="maps/CasaquiteBathymetricMap-1.png" alt="Philippine Trench Bathymetric Map" class="map-image landscape" onclick="openFullscreen(this)">
-        <img src="maps/GrandCanyon-1.png" alt="Grand Canyon Map" class="map-image landscape" onclick="openFullscreen(this)">
-        <img src="maps/11122024Final-1.png" alt="Uranium Mining Thematic Map" class="map-image landscape" onclick="openFullscreen(this)">
-        <img src="maps/SubsurfaceMapDraftFinal2-1.png" alt="Uranium Mining Subsurface Map" class="map-image portrait" onclick="openFullscreen(this)">
-        <img src="maps/BrightAngelAB_Map2-1.png" alt="Bright Angel Trail Map" class="map-image landscape" onclick="openFullscreen(this)">
+        <div class="main">
+            <div class="post-list">
+                <div class="post-list-item">
+                    <div class="post-img">
+                        <img src="maps/Casaquite_SouthEastAsiaFinal2-1.png" alt="Southeast Asia Map">
+                    </div>
+                    <div class="post-info">
+                        <div class="post-title">
+                            <a href="#">Southeast Asia Map</a>
+                        </div>
+                        <span class="post-date">December 2024</span>
+                    </div>
+                </div>
+
+                <div class="post-list-item">
+                    <div class="post-img">
+                        <img src="maps/Casaquite_MetroManila-1.png" alt="Metro Manila Cities Map">
+                    </div>
+                    <div class="post-info">
+                        <div class="post-title">
+                            <a href="#">Metro Manila Cities Map</a>
+                        </div>
+                        <span class="post-date">December 2024</span>
+                    </div>
+                </div>
+
+                <div class="post-list-item">
+                    <div class="post-img">
+                        <img src="maps/Casaquite_PhilippinesGenRefFinal-1.png" alt="Philippines General Reference Map">
+                    </div>
+                    <div class="post-info">
+                        <div class="post-title">
+                            <a href="#">Philippines General Reference Map</a>
+                        </div>
+                        <span class="post-date">December 2024</span>
+                    </div>
+                </div>
+
+                <div class="post-list-item">
+                    <div class="post-img">
+                        <img src="maps/CasaquiteBathymetricMap-1.png" alt="Philippine Trench Bathymetric Map">
+                    </div>
+                    <div class="post-info">
+                        <div class="post-title">
+                            <a href="#">Philippine Trench Bathymetric Map</a>
+                        </div>
+                        <span class="post-date">December 2024</span>
+                    </div>
+                </div>
+
+                <div class="post-list-item">
+                    <div class="post-img">
+                        <img src="maps/GrandCanyon-1.png" alt="Grand Canyon Map">
+                    </div>
+                    <div class="post-info">
+                        <div class="post-title">
+                            <a href="#">Grand Canyon Map</a>
+                        </div>
+                        <span class="post-date">December 2024</span>
+                    </div>
+                </div>
+
+                <div class="post-list-item">
+                    <div class="post-img">
+                        <img src="maps/11122024Final-1.png" alt="Uranium Mining Thematic Map">
+                    </div>
+                    <div class="post-info">
+                        <div class="post-title">
+                            <a href="#">Uranium Mining Thematic Map</a>
+                        </div>
+                        <span class="post-date">December 2024</span>
+                    </div>
+                </div>
+
+                <div class="post-list-item">
+                    <div class="post-img">
+                        <img src="maps/SubsurfaceMapDraftFinal2-1.png" alt="Uranium Mining Subsurface Map">
+                    </div>
+                    <div class="post-info">
+                        <div class="post-title">
+                            <a href="#">Uranium Mining Subsurface Map</a>
+                        </div>
+                        <span class="post-date">December 2024</span>
+                    </div>
+                </div>
+
+                <div class="post-list-item">
+                    <div class="post-img">
+                        <img src="maps/BrightAngelAB_Map2-1.png" alt="Bright Angel Trail Map">
+                    </div>
+                    <div class="post-info">
+                        <div class="post-title">
+                            <a href="#">Bright Angel Trail Map</a>
+                        </div>
+                        <span class="post-date">December 2024</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            All maps are original works | Created December 2024
+        </div>
     </div>
-
-    <!-- Fullscreen Viewer -->
-    <div id="fullscreen-container" onclick="closeFullscreen()">
-        <img id="fullscreen-image" src="" alt="Fullscreen Map">
-    </div>
-
-    <script>
-        function openFullscreen(imageElement) {
-            const fullscreenContainer = document.getElementById('fullscreen-container');
-            const fullscreenImage = document.getElementById('fullscreen-image');
-
-            fullscreenImage.src = imageElement.src; // Set the fullscreen image
-            
-            // Remove previous orientation class
-            fullscreenImage.classList.remove('portrait', 'landscape');
-            
-            // Use the pre-defined class from the thumbnail
-            const orientationClass = Array.from(imageElement.classList)
-                .find(cls => ['portrait', 'landscape'].includes(cls));
-            
-            if (orientationClass) {
-                fullscreenImage.classList.add(orientationClass);
-            }
-
-            fullscreenContainer.style.display = 'flex';
-        }
-
-        function closeFullscreen() {
-            const fullscreenContainer = document.getElementById('fullscreen-container');
-            fullscreenContainer.style.display = 'none';
-        }
-    </script>
 </body>
 </html>
