@@ -77,6 +77,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .post-list-item:hover {
@@ -123,6 +124,38 @@
             color: #6c757d;
         }
 
+        /* Fullscreen Styles */
+        #fullscreen-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        #fullscreen-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        /* Portrait and Landscape Classes */
+        #fullscreen-image.portrait {
+            width: auto;
+            height: 90%;
+        }
+
+        #fullscreen-image.landscape {
+            width: 90%;
+            height: auto;
+        }
+
         @media (max-width: 768px) {
             .menu-list {
                 flex-direction: column;
@@ -143,7 +176,7 @@
 
         <div class="main">
             <div class="post-list">
-                <div class="post-list-item">
+                <div class="post-list-item landscape" onclick="openFullscreen(this)">
                     <div class="post-img">
                         <img src="maps/Casaquite_SouthEastAsiaFinal2-1.png" alt="Southeast Asia Map">
                     </div>
@@ -155,7 +188,7 @@
                     </div>
                 </div>
 
-                <div class="post-list-item">
+                <div class="post-list-item landscape" onclick="openFullscreen(this)">
                     <div class="post-img">
                         <img src="maps/Casaquite_MetroManila-1.png" alt="Metro Manila Cities Map">
                     </div>
@@ -167,7 +200,7 @@
                     </div>
                 </div>
 
-                <div class="post-list-item">
+                <div class="post-list-item portrait" onclick="openFullscreen(this)">
                     <div class="post-img">
                         <img src="maps/Casaquite_PhilippinesGenRefFinal-1.png" alt="Philippines General Reference Map">
                     </div>
@@ -179,7 +212,7 @@
                     </div>
                 </div>
 
-                <div class="post-list-item">
+                <div class="post-list-item landscape" onclick="openFullscreen(this)">
                     <div class="post-img">
                         <img src="maps/CasaquiteBathymetricMap-1.png" alt="Philippine Trench Bathymetric Map">
                     </div>
@@ -191,7 +224,7 @@
                     </div>
                 </div>
 
-                <div class="post-list-item">
+                <div class="post-list-item landscape" onclick="openFullscreen(this)">
                     <div class="post-img">
                         <img src="maps/GrandCanyon-1.png" alt="Grand Canyon Map">
                     </div>
@@ -203,7 +236,7 @@
                     </div>
                 </div>
 
-                <div class="post-list-item">
+                <div class="post-list-item landscape" onclick="openFullscreen(this)">
                     <div class="post-img">
                         <img src="maps/11122024Final-1.png" alt="Uranium Mining Thematic Map">
                     </div>
@@ -215,7 +248,7 @@
                     </div>
                 </div>
 
-                <div class="post-list-item">
+                <div class="post-list-item portrait" onclick="openFullscreen(this)">
                     <div class="post-img">
                         <img src="maps/SubsurfaceMapDraftFinal2-1.png" alt="Uranium Mining Subsurface Map">
                     </div>
@@ -227,7 +260,7 @@
                     </div>
                 </div>
 
-                <div class="post-list-item">
+                <div class="post-list-item landscape" onclick="openFullscreen(this)">
                     <div class="post-img">
                         <img src="maps/BrightAngelAB_Map2-1.png" alt="Bright Angel Trail Map">
                     </div>
@@ -241,9 +274,46 @@
             </div>
         </div>
 
+        <!-- Fullscreen Viewer -->
+        <div id="fullscreen-container" onclick="closeFullscreen()">
+            <img id="fullscreen-image" src="" alt="Fullscreen Map">
+        </div>
+
         <div class="footer">
             All maps are original works | Created December 2024
         </div>
     </div>
+
+    <script>
+        function openFullscreen(mapElement) {
+            const fullscreenContainer = document.getElementById('fullscreen-container');
+            const fullscreenImage = document.getElementById('fullscreen-image');
+            
+            // Get the image from the clicked map item
+            const mapImage = mapElement.querySelector('img');
+            
+            // Set the fullscreen image source
+            fullscreenImage.src = mapImage.src;
+            
+            // Remove previous orientation classes
+            fullscreenImage.classList.remove('portrait', 'landscape');
+            
+            // Add the correct orientation class
+            const orientationClass = Array.from(mapElement.classList)
+                .find(cls => ['portrait', 'landscape'].includes(cls));
+            
+            if (orientationClass) {
+                fullscreenImage.classList.add(orientationClass);
+            }
+            
+            // Show the fullscreen container
+            fullscreenContainer.style.display = 'flex';
+        }
+
+        function closeFullscreen() {
+            const fullscreenContainer = document.getElementById('fullscreen-container');
+            fullscreenContainer.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
