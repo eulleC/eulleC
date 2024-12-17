@@ -16,7 +16,7 @@ Welcome to my cartography portfolio! I am a senior student at Augustana College 
 ## 🗂️ Projects
 Explore my projects, from interactive maps to static cartographic designs. Each project highlights a unique geospatial challenge and my approach to solving it.
 
-[🌐 **Visit the Projects Page**](projects.md)
+[🌐 **Visit the Projects Page**](index.html)
 
 ---
 
