@@ -86,22 +86,70 @@
             color: white;
         }
 
-        .resume-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+        .resume-container {
+            display: flex;
+            gap: 4rem;
+            margin-top: 2rem;
         }
 
-        .resume-item {
+        .resume-left, .resume-right {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .pdf-container {
             background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 8px;
+            border-radius: 12px;
+            overflow: hidden;
             transition: transform 0.3s ease;
         }
 
-        .resume-item:hover {
+        .pdf-container:hover {
             transform: translateY(-5px);
+        }
+
+        .resume-link {
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        .pdf-preview {
+            padding: 3rem;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        .pdf-icon {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .about-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .about-text {
+            color: #fff;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .about-text:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .resume-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
         }
 
         .resume-item h3 {
@@ -164,22 +212,28 @@
     </div>
 
     <section id="resume" class="content-section">
-        <h2 class="section-title">Resume</h2>
-        <div class="resume-grid">
-            <div class="resume-item">
-                <h3>Education</h3>
-                <p>Augustana College</p>
-                <p>Majors in Geology and Geography, Minor in GIS and Technology</p>
+        <div class="resume-container">
+            <div class="resume-left">
+                <h2 class="section-title">Resume</h2>
+                <div class="pdf-container">
+                    <a href="CasaquiteResume.pdf" target="_blank" class="resume-link">
+                        <div class="pdf-preview">
+                            <div class="pdf-icon">PDF</div>
+                            <p>Click to view full resume</p>
+                        </div>
+                    </a>
+                </div>
             </div>
-            <div class="resume-item">
-                <h3>Skills</h3>
-                <p>Cartography</p>
-                <p>Digital Design</p>
-                <p>GIS Analysis</p>
-            </div>
-            <div class="resume-item">
-                <h3>Experience</h3>
-                <p>Add your relevant work experience here</p>
+            <div class="resume-right">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <p class="about-text">
+                        I am a student at Augustana College pursuing majors in Geology and Geography with a minor in GIS and Technology. My passion lies in creating meaningful visualizations and maps that tell compelling stories about our world.
+                    </p>
+                    <p class="about-text">
+                        With a background in both natural sciences and digital technology, I bring a unique perspective to cartographic design and geographical analysis.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
