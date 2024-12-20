@@ -40,14 +40,12 @@
         }
 
         .gallery-container {
-            width: 95%;
-            max-width: 1800px;
-            margin: 2rem auto;
+            width: 100%;
+            height: calc(100vh - 60px); /* Subtract nav height */
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: auto;
-            gap: 1rem;
-            padding: 1rem;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            gap: 4px;
         }
 
         .gallery-item {
@@ -56,8 +54,6 @@
             height: 100%;
             cursor: pointer;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 4px;
         }
 
         .gallery-item img {
@@ -168,12 +164,13 @@
         @media (max-width: 768px) {
             .gallery-container {
                 grid-template-columns: 1fr;
-                width: 100%;
+                height: auto;
             }
             
             .gallery-item {
                 grid-column: 1 !important;
                 grid-row: auto !important;
+                height: 300px;
             }
         }
     </style>
@@ -188,7 +185,7 @@
             <img src="maps/11122024Final-1.png" alt="Map 1">
         </div>
         <div class="gallery-item item-2">
-            <img src="maps/Casaquite_SouthEastAsiaFinal2-1.png" alt="Southeast Asia Map">
+            <img src="maps/Casaquite_SouthEastAsiaFinal2-2.png" alt="Southeast Asia Map">
         </div>
         <div class="gallery-item item-3">
             <img src="maps/SubsurfaceMapDraftFinal2-1.png" alt="Subsurface Map">
