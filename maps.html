@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Map Archive | Interactive Maps Collection</title>
+    <title>Maps - Eulle Stann Casaquite</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap');
 
         * {
             margin: 0;
@@ -14,166 +16,166 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
+            background-color: black;
+            color: white;
+            font-family: 'Raleway', sans-serif;
         }
 
-        .wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .gallery {
+        .gallery-container {
+            max-width: 95%;
+            margin: 2rem auto;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 2rem;
+            gap: 1rem;
             padding: 1rem;
         }
 
         .gallery-item {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .image-container {
             position: relative;
-            padding-top: 75%; /* 4:3 Aspect Ratio */
+            width: 100%;
+            cursor: pointer;
             overflow: hidden;
-            background: #f0f0f0;
         }
 
-        .image-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
 
-        .gallery-item:hover .image-container img {
-            transform: scale(1.05);
+        .gallery-item:hover img {
+            transform: scale(1.02);
         }
 
-        .item-info {
-            padding: 1rem;
-        }
-
-        .item-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-
-        .item-date {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        /* Fullscreen viewer */
-        .fullscreen {
+        /* Modal styles */
+        .modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.9);
             z-index: 1000;
-            cursor: pointer;
         }
 
-        .fullscreen img {
-            max-width: 90%;
-            max-height: 90vh;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .modal-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content img {
+            max-width: 95%;
+            max-height: 95%;
             object-fit: contain;
         }
 
-        @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 1rem;
-            }
-
-            .wrapper {
-                padding: 1rem;
-            }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
         }
+
+        /* Navigation */
+        .nav-header {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .nav-header a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            margin-left: 1rem;
+        }
+
+        .nav-header a:hover {
+            color: #aaa;
+        }
+
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <header class="header">
-            <h1>Map Archive</h1>
-        </header>
+    <nav class="nav-header">
+        <a href="index.html">← Back to Portfolio</a>
+    </nav>
 
-        <div class="gallery">
-            <div class="gallery-item" onclick="openFullscreen('maps/Casaquite_SouthEastAsiaFinal2-1.png')">
-                <div class="image-container">
-                    <img src="maps/Casaquite_SouthEastAsiaFinal2-1.png" alt="Southeast Asia Map">
-                </div>
-                <div class="item-info">
-                    <div class="item-title">Southeast Asia Map</div>
-                    <div class="item-date">December 2024</div>
-                </div>
-            </div>
-
-            <div class="gallery-item" onclick="openFullscreen('maps/Casaquite_MetroManila-1.png')">
-                <div class="image-container">
-                    <img src="maps/Casaquite_MetroManila-1.png" alt="Metro Manila Cities Map">
-                </div>
-                <div class="item-info">
-                    <div class="item-title">Metro Manila Cities Map</div>
-                    <div class="item-date">December 2024</div>
-                </div>
-            </div>
-
-            <!-- Add more gallery items following the same pattern -->
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <img src="maps/11122024Final-1.png" alt="Map 1">
         </div>
+        <div class="gallery-item">
+            <img src="maps/BrightAngelABMap.png" alt="Bright Angel Map">
+        </div>
+        <div class="gallery-item">
+            <img src="maps/CasaquiteBathyMetricMap.png" alt="Bathymetric Map">
+        </div>
+        <div class="gallery-item">
+            <img src="maps/Casaquite_MetroManila.png" alt="Metro Manila Map">
+        </div>
+        <div class="gallery-item">
+            <img src="maps/Casaquite_PhilippinesGenRefFinal-1.png" alt="Philippines Reference Map">
+        </div>
+        <div class="gallery-item">
+            <img src="maps/Casaquite_SouthEastAsia.png" alt="Southeast Asia Map">
+        </div>
+        <div class="gallery-item">
+            <img src="maps/GrandCanyon1.png" alt="Grand Canyon Map">
+        </div>
+        <div class="gallery-item">
+            <img src="maps/SubsurfaceMapDraftFinal.png" alt="Subsurface Map">
+        </div>
+    </div>
 
-        <div class="fullscreen" onclick="closeFullscreen()">
-            <img id="fullscreen-image" src="" alt="Fullscreen view">
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Full screen map">
         </div>
     </div>
 
     <script>
-        function openFullscreen(imageSrc) {
-            const fullscreen = document.querySelector('.fullscreen');
-            const fullscreenImage = document.getElementById('fullscreen-image');
-            fullscreenImage.src = imageSrc;
-            fullscreen.style.display = 'block';
-        }
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeModal = document.querySelector('.close-modal');
 
-        function closeFullscreen() {
-            const fullscreen = document.querySelector('.fullscreen');
-            fullscreen.style.display = 'none';
-        }
+        // Open modal when clicking on images
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = 'block';
+                modalImg.src = this.src;
+            });
+        });
+
+        // Close modal when clicking on X
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Close modal with escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
