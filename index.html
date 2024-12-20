@@ -293,18 +293,47 @@
     </footer>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for fade-in effect
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.content-section').forEach((section) => {
+                observer.observe(section);
+            });
+
+            // Modal functionality for maps
+            const mapModal = document.getElementById('mapModal');
+            const modalImage = document.getElementById('modalImage');
+            const closeModal = document.querySelector('.close-modal');
+
+            document.querySelectorAll('.map-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const img = this.querySelector('img');
+                    modalImage.src = img.src;
+                    mapModal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            closeModal.addEventListener('click', function() {
+                mapModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target == mapModal) {
+                    mapModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
                 }
             });
-        }, {
-            threshold: 0.1
-        });
-
-        document.querySelectorAll('.content-section').forEach((section) => {
-            observer.observe(section);
         });
     </script>
 </body>
