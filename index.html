@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -186,6 +185,30 @@
             color: #aaa;
         }
 
+        .map-button-container {
+            text-align: center;
+            margin-top: 3rem;
+            padding-bottom: 2rem;
+        }
+
+        .map-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .map-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
         footer {
             padding: 2rem;
             text-align: center;
@@ -244,6 +267,9 @@
                     </p>
                 </div>
             </div>
+        </div>
+        <div class="map-button-container">
+            <a href="#maps" class="map-button">View My Maps</a>
         </div>
     </section>
 
@@ -308,32 +334,6 @@
 
             document.querySelectorAll('.content-section').forEach((section) => {
                 observer.observe(section);
-            });
-
-            // Modal functionality for maps
-            const mapModal = document.getElementById('mapModal');
-            const modalImage = document.getElementById('modalImage');
-            const closeModal = document.querySelector('.close-modal');
-
-            document.querySelectorAll('.map-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    const img = this.querySelector('img');
-                    modalImage.src = img.src;
-                    mapModal.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                });
-            });
-
-            closeModal.addEventListener('click', function() {
-                mapModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-
-            window.addEventListener('click', function(event) {
-                if (event.target == mapModal) {
-                    mapModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
             });
         });
     </script>
