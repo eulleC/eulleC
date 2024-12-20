@@ -30,11 +30,12 @@
             width: 100%;
             height: 100vh;
             background-image: url('maps/Casaquite_SouthEastAsiaFinal2-1.png');
-            background-size: cover;
+            background-size: 100% auto;
             background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
 
         .hero::before {
@@ -90,24 +91,24 @@
             display: flex;
             gap: 4rem;
             margin-top: 2rem;
+            min-height: 600px;
         }
 
         .resume-left, .resume-right {
             flex: 1;
             min-width: 0;
+            height: 600px;
         }
 
         .pdf-container {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s ease;
             height: 100%;
         }
 
         .pdf-preview {
             height: 100%;
-            min-height: 400px;
         }
 
         .pdf-preview embed {
@@ -116,34 +117,14 @@
             border: none;
         }
 
-        .pdf-container:hover {
-            transform: translateY(-5px);
-        }
-
-        .resume-link {
-            text-decoration: none;
-            color: white;
-            display: block;
-        }
-
-        .pdf-preview {
-            padding: 3rem;
-            text-align: center;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-        }
-
-        .pdf-icon {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: #fff;
-        }
-
         .about-content {
             background: rgba(255, 255, 255, 0.05);
             padding: 2rem;
             border-radius: 12px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .about-text {
@@ -151,27 +132,6 @@
             line-height: 1.8;
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
-        }
-
-        .about-text:last-child {
-            margin-bottom: 0;
-        }
-
-        @media (max-width: 768px) {
-            .resume-container {
-                flex-direction: column;
-                gap: 2rem;
-            }
-        }
-
-        .resume-item h3 {
-            color: #fff;
-            margin-bottom: 1rem;
-        }
-
-        .resume-item p {
-            color: #aaa;
-            line-height: 1.6;
         }
 
         .research-list {
@@ -193,8 +153,9 @@
 
         .research-item h3 {
             color: #fff;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 1rem;
+            line-height: 1.4;
         }
 
         .research-details p {
@@ -206,6 +167,7 @@
         .research-details ul {
             list-style-type: none;
             padding: 0;
+            margin: 1rem 0;
         }
 
         .research-details li {
@@ -213,6 +175,7 @@
             margin-bottom: 0.8rem;
             padding-left: 1.5rem;
             position: relative;
+            line-height: 1.6;
         }
 
         .research-details li:before {
@@ -237,6 +200,11 @@
             .section-title {
                 font-size: 2rem;
             }
+
+            .resume-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -259,11 +227,9 @@
             <div class="resume-left">
                 <h2 class="section-title">Resume</h2>
                 <div class="pdf-container">
-                    <a href="CasaquiteResume.pdf" target="_blank" class="resume-link">
-                        <div class="pdf-preview">
-                            <embed src="CasaquiteResume.pdf" type="application/pdf" width="100%" height="400px" />
-                        </div>
-                    </a>
+                    <div class="pdf-preview">
+                        <embed src="CasaquiteResume.pdf" type="application/pdf" width="100%" height="400px" />
+                    </div>
                 </div>
             </div>
             <div class="resume-right">
@@ -282,28 +248,42 @@
 
     <section id="research" class="content-section">
         <h2 class="section-title">Research Projects</h2>
-        <div class="projects-list">
-            <div class="project-card">
-                <h3>Digital Cartography and Design</h3>
-                <p>I specialize in crafting detailed and informative maps that combine scientific data with aesthetic appeal. My work includes a comprehensive bathymetric map of Indonesia, a detailed political map of Southeast Asia, and a Metro Manila transportation analysis visualization.</p>
+        <div class="research-list">
+            <div class="research-item">
+                <h3>IMPROVING THE EXPOSURE CALCULATION FOR THE VPI30 COMPONENT OF THE PHILIPPINE NATIONAL VOLCANIC THREAT ASSESSMENT USING SENTINEL-2 IMAGERY DATA AND GIS EXTRACTION METHODS</h3>
+                <div class="research-details">
+                    <ul>
+                        <li>Completed analysis to place large population dataset to its respective study areas</li>
+                        <li>Extracted built area pixels from Sentinel-2 imagery data</li>
+                        <li>Compared current exposure calculation vs my improved exposure calculation to identify differences in quality</li>
+                        <li>Results will be verified by the Philippine Institute of Volcanology and Seismology to be part of the Philippine National Volcanic Threat Assessment report</li>
+                        <li>Will be presented at the Geological Society of America 2025 Joint North East – North Central Section Meeting, Eerie, PA</li>
+                    </ul>
+                </div>
             </div>
-            <div class="project-card">
-                <h3>GIS Analysis</h3>
-                <p>Currently focused on geological and environmental mapping projects, including subsurface analysis and topographical studies. My work combines GIS technology with geological principles to create comprehensive visualizations of complex terrain and underground features.</p>
-            </div>
-        </div>
-    </section>
 
-    <section id="presentations" class="content-section">
-        <h2 class="section-title">Poster Presentations</h2>
-        <div class="projects-list">
-            <div class="project-card">
-                <h3>Conference Presentation 1</h3>
-                <p>Details about your poster presentation...</p>
+            <div class="research-item">
+                <h3>UBIQUITOUS MICROPLASTICS IN FLUVIAL SEDIMENTS OF URBAN STREAM SYSTEMS IN DAVENPORT AND BETTENDORF, IOWA (2024)</h3>
+                <div class="research-details">
+                    <ul>
+                        <li>Completed field work in multiple study sites to collect sediment samples</li>
+                        <li>Completed lab work to isolate microplastics from sediment samples</li>
+                        <li>Used fluorescent microscopy to identify microplastics in sediments</li>
+                        <li>Presented at the Geological Society of America 2024 Joint North East - South Central Section Meeting, Springfield, MO</li>
+                    </ul>
+                </div>
             </div>
-            <div class="project-card">
-                <h3>Conference Presentation 2</h3>
-                <p>Information about another poster presentation...</p>
+
+            <div class="research-item">
+                <h3>STREAM ASSESSMENT OF MICROPLASTICS IN QUAD CITY WATERSHEDS (2023)</h3>
+                <div class="research-details">
+                    <ul>
+                        <li>Completed field work in multiple study sites to collect water samples</li>
+                        <li>Completed lab work to isolate microplastics from water samples</li>
+                        <li>Used fluorescent microscopy to identify microplastics in sediments</li>
+                        <li>Presented at the Upper Mississippi Research Consortium, La Crosse, WI</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -313,7 +293,6 @@
     </footer>
 
     <script>
-        // Intersection Observer for fade-in effect
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -324,7 +303,6 @@
             threshold: 0.1
         });
 
-        // Observe all content sections
         document.querySelectorAll('.content-section').forEach((section) => {
             observer.observe(section);
         });
