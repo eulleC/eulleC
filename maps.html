@@ -39,7 +39,7 @@
         }
 
         .gallery-container {
-            width: 1200px;  /* Fixed width */
+            width: 1200px;
             margin: 2rem auto;
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -51,50 +51,23 @@
             position: relative;
             width: 100%;
             cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
         }
 
         .gallery-item img {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.3s ease;
         }
 
         .gallery-item:hover img {
             transform: scale(1.02);
-        }
-
-        /* Specific grid placements */
-        .item-1 { /* 11122024Final-1 */
-            grid-column: span 2;
-        }
-
-        .item-2 { /* Southeast Asia */
-            grid-column: span 4;
-        }
-
-        .item-3 { /* Subsurface */
-            grid-column: span 2;
-        }
-
-        .item-4 { /* Grand Canyon */
-            grid-column: span 2;
-        }
-
-        .item-5 { /* Philippines Gen Ref */
-            grid-column: span 2;
-        }
-
-        .item-6 { /* Metro Manila */
-            grid-column: span 4;
-        }
-
-        .item-7 { /* Bathymetric */
-            grid-column: span 2;
-        }
-
-        .item-extra {
-            grid-column: span 2;
         }
 
         /* Modal styles */
@@ -165,37 +138,35 @@
 
     <div class="gallery-container">
         <!-- Row 1 -->
-        <div class="gallery-item item-1">
+        <div class="gallery-item" style="grid-column: span 2;">
             <img src="maps/11122024Final-1.png" alt="Map 1">
         </div>
-        <div class="gallery-item item-2">
+        <div class="gallery-item" style="grid-column: span 4;">
             <img src="maps/Casaquite_SouthEastAsiaFinal2-1.png" alt="Southeast Asia Map">
         </div>
 
         <!-- Row 2 -->
-        <div class="gallery-item item-3">
+        <div class="gallery-item" style="grid-column: span 2;">
             <img src="maps/SubsurfaceMapDraftFinal2-1.png" alt="Subsurface Map">
         </div>
-        <div class="gallery-item item-4">
+        <div class="gallery-item" style="grid-column: span 2;">
             <img src="maps/GrandCanyon-1.png" alt="Grand Canyon Map">
         </div>
-        <div class="gallery-item item-5">
+        <div class="gallery-item" style="grid-column: span 2; grid-row: span 2;">
             <img src="maps/Casaquite_PhilippinesGenRefFinal-1.png" alt="Philippines Reference Map">
         </div>
 
-        <!-- Additional Row for Philippine Trench -->
-        <div class="gallery-item item-extra" style="grid-column: 3 / span 2;">
-            <img src="maps/CasaquiteBathymetricMap-1.png" alt="Bathymetric Map">
+        <!-- Bright Angel and Philippine Trench Map -->
+        <div class="gallery-item" style="grid-column: span 2;">
+            <img src="maps/BrightAngelAB_Map2-1.png" alt="Bright Angel Trail Map">
+        </div>
+        <div class="gallery-item" style="grid-column: span 2;">
+            <img src="maps/CasaquiteBathymetricMap-1.png" alt="Philippine Trench Map">
         </div>
 
-        <!-- Row 3 -->
-        <div class="gallery-item item-6">
+        <!-- Metro Manila -->
+        <div class="gallery-item" style="grid-column: span 4;">
             <img src="maps/Casaquite_MetroManila-1.png" alt="Metro Manila Map">
-        </div>
-
-        <!-- Row 4 -->
-        <div class="gallery-item item-7">
-            <img src="maps/BrightAngelAB_Map2-1.png" alt="Bright Angel Map">
         </div>
     </div>
 
