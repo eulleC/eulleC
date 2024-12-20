@@ -58,6 +58,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
             z-index: 1000;
+            cursor: pointer;
         }
 
         .modal-content {
@@ -73,16 +74,31 @@
             max-width: 95%;
             max-height: 95%;
             object-fit: contain;
+            cursor: default;
         }
 
         .close-modal {
-            position: absolute;
+            position: fixed;
             top: 15px;
             right: 35px;
             color: #f1f1f1;
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+            line-height: 1;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            color: #bbb;
         }
 
         /* Navigation */
@@ -102,7 +118,6 @@
         .nav-header a:hover {
             color: #aaa;
         }
-
     </style>
 </head>
 <body>
@@ -115,25 +130,25 @@
             <img src="maps/11122024Final-1.png" alt="Map 1">
         </div>
         <div class="gallery-item">
-            <img src="maps/BrightAngelABMap.png" alt="Bright Angel Map">
+            <img src="maps/BrightAngelAB_Map2-1.png" alt="Bright Angel Map">
         </div>
         <div class="gallery-item">
-            <img src="maps/CasaquiteBathyMetricMap.png" alt="Bathymetric Map">
+            <img src="maps/CasaquiteBathymetricMap-1.png" alt="Bathymetric Map">
         </div>
         <div class="gallery-item">
-            <img src="maps/Casaquite_MetroManila.png" alt="Metro Manila Map">
+            <img src="maps/Casaquite_MetroManila-1.png" alt="Metro Manila Map">
         </div>
         <div class="gallery-item">
             <img src="maps/Casaquite_PhilippinesGenRefFinal-1.png" alt="Philippines Reference Map">
         </div>
         <div class="gallery-item">
-            <img src="maps/Casaquite_SouthEastAsia.png" alt="Southeast Asia Map">
+            <img src="maps/Casaquite_SouthEastAsiaFinal2-2.png" alt="Southeast Asia Map">
         </div>
         <div class="gallery-item">
-            <img src="maps/GrandCanyon1.png" alt="Grand Canyon Map">
+            <img src="maps/GrandCanyon-1.png" alt="Grand Canyon Map">
         </div>
         <div class="gallery-item">
-            <img src="maps/SubsurfaceMapDraftFinal.png" alt="Subsurface Map">
+            <img src="maps/SubsurfaceMapDraftFinal2-1.png" alt="Subsurface Map">
         </div>
     </div>
 
@@ -148,34 +163,49 @@
     <script>
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
-        const closeModal = document.querySelector('.close-modal');
+        const closeModalBtn = document.querySelector('.close-modal');
+        const modalContent = document.querySelector('.modal-content');
 
         // Open modal when clicking on images
         document.querySelectorAll('.gallery-item img').forEach(img => {
             img.addEventListener('click', function() {
                 modal.style.display = 'block';
                 modalImg.src = this.src;
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
             });
         });
 
-        // Close modal when clicking on X
-        closeModal.addEventListener('click', function() {
-            modal.style.display = 'none';
+        // Close modal when clicking the X button
+        closeModalBtn.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent event from bubbling to modal
+            closeModal();
         });
 
         // Close modal when clicking outside the image
         modal.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
+            // Only close if clicking outside the image
+            if (event.target === modal || event.target === modalContent) {
+                closeModal();
             }
+        });
+
+        // Prevent modal from closing when clicking the image itself
+        modalImg.addEventListener('click', function(event) {
+            event.stopPropagation();
         });
 
         // Close modal with escape key
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && modal.style.display === 'block') {
-                modal.style.display = 'none';
+            if (event.key === 'Escape') {
+                closeModal();
             }
         });
+
+        // Function to close modal
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
     </script>
 </body>
 </html>
