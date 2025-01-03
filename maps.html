@@ -227,7 +227,7 @@
             <div class="map-container">
                 <img src="maps/Casaquite_MetroManila-1.png" alt="Metro Manila Map">
             </div>
-            <div class="map-title">Metro Manila Reference</div>
+            <div class="map-title">Cities of Metro Manila</div>
         </div>
         <div class="gallery-item">
             <div class="map-container">
@@ -239,13 +239,13 @@
             <div class="map-container">
                 <img src="maps/SubsurfaceMapDraftFinal2-1.png" alt="Subsurface Map">
             </div>
-            <div class="map-title">Subsurface Analysis</div>
+            <div class="map-title">Subsurface Map</div>
         </div>
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/GrandCanyon-1.png" alt="Grand Canyon Map">
             </div>
-            <div class="map-title">Grand Canyon Overview</div>
+            <div class="map-title">Grand Canyon General Reference</div>
         </div>
         <div class="gallery-item">
             <div class="map-container">
@@ -279,16 +279,12 @@
                         <span class="metadata-label">Software Used:</span>
                         <span id="modalSoftware"></span>
                     </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Data Source:</span>
-                        <span id="modalSource"></span>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-<script>
+    <script>
         const mapDescriptions = {
             'Casaquite_SouthEastAsiaFinal2-1.png': {
                 title: 'Southeast Asia Physical and Political',
@@ -334,6 +330,11 @@
             }
         };
 
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeModalBtn = document.querySelector('.close-modal');
+        const modalContent = document.querySelector('.modal-content');
+
         document.querySelectorAll('.map-container img').forEach(img => {
             img.addEventListener('click', function() {
                 const fileName = this.src.split('/').pop();
@@ -343,6 +344,14 @@
                     date: '-',
                     software: '-'
                 };
+
+                modal.style.display = 'block';
+                modalImg.src = this.src;
+                document.getElementById('modalTitle').textContent = mapInfo.title;
+                document.getElementById('modalText').innerHTML = `<p>${mapInfo.description}</p>`;
+                document.getElementById('modalDate').textContent = mapInfo.date;
+                document.getElementById('modalSoftware').textContent = mapInfo.software;
+                document.body.style.overflow = '
 
                 modal.style.display = 'block';
                 modalImg.src = this.src;
