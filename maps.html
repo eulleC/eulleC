@@ -39,38 +39,48 @@
         }
 
         .gallery-container {
-            width: 1200px;
+            width: 100%;
+            max-width: 1500px;
             margin: 2rem auto;
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
             padding: 0 20px;
         }
 
         .gallery-item {
-            position: relative;
-            width: 100%;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.05);
-            min-height: 200px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .gallery-item img {
+        .map-container {
+            aspect-ratio: 3/5;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .map-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
 
-        .gallery-item:hover img {
+        .map-container:hover img {
             transform: scale(1.02);
         }
 
-        /* Modal styles */
+        .map-title {
+            text-align: center;
+            font-size: 1rem;
+            color: #fff;
+            padding: 0 10px;
+            font-weight: 300;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -119,14 +129,15 @@
             justify-content: center;
         }
 
-        .close-modal:hover {
-            color: #bbb;
+        @media (max-width: 768px) {
+            .gallery-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
-        @media (max-width: 1200px) {
+        @media (max-width: 480px) {
             .gallery-container {
-                width: 100%;
-                max-width: 1200px;
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -137,40 +148,50 @@
     </nav>
 
     <div class="gallery-container">
-        <!-- Row 1 -->
-        <div class="gallery-item" style="grid-column: span 2;">
-            <img src="maps/11122024Final-1.png" alt="Map 1">
+        <div class="gallery-item">
+            <div class="map-container">
+                <img src="maps/Casaquite_SouthEastAsiaFinal2-1.png" alt="Southeast Asia Map">
+            </div>
+            <div class="map-title">Southeast Asia Physical and Political</div>
         </div>
-        <div class="gallery-item" style="grid-column: span 4;">
-            <img src="maps/Casaquite_SouthEastAsiaFinal2-1.png" alt="Southeast Asia Map">
+        <div class="gallery-item">
+            <div class="map-container">
+                <img src="maps/Casaquite_MetroManila-1.png" alt="Metro Manila Map">
+            </div>
+            <div class="map-title">Metro Manila Reference</div>
         </div>
-
-        <!-- Row 2 -->
-        <div class="gallery-item" style="grid-column: span 2;">
-            <img src="maps/SubsurfaceMapDraftFinal2-1.png" alt="Subsurface Map">
+        <div class="gallery-item">
+            <div class="map-container">
+                <img src="maps/Casaquite_PhilippinesGenRefFinal-1.png" alt="Philippines Reference Map">
+            </div>
+            <div class="map-title">Philippines General Reference</div>
         </div>
-        <div class="gallery-item" style="grid-column: span 2;">
-            <img src="maps/GrandCanyon-1.png" alt="Grand Canyon Map">
+        <div class="gallery-item">
+            <div class="map-container">
+                <img src="maps/SubsurfaceMapDraftFinal2-1.png" alt="Subsurface Map">
+            </div>
+            <div class="map-title">Subsurface Analysis</div>
         </div>
-        <div class="gallery-item" style="grid-column: span 2; grid-row: span 2;">
-            <img src="maps/Casaquite_PhilippinesGenRefFinal-1.png" alt="Philippines Reference Map">
+        <div class="gallery-item">
+            <div class="map-container">
+                <img src="maps/GrandCanyon-1.png" alt="Grand Canyon Map">
+            </div>
+            <div class="map-title">Grand Canyon Overview</div>
         </div>
-
-        <!-- Bright Angel and Philippine Trench Map -->
-        <div class="gallery-item" style="grid-column: span 2;">
-            <img src="maps/BrightAngelAB_Map2-1.png" alt="Bright Angel Trail Map">
+        <div class="gallery-item">
+            <div class="map-container">
+                <img src="maps/BrightAngelAB_Map2-1.png" alt="Bright Angel Trail Map">
+            </div>
+            <div class="map-title">Bright Angel Trail</div>
         </div>
-        <div class="gallery-item" style="grid-column: span 2;">
-            <img src="maps/CasaquiteBathymetricMap-1.png" alt="Philippine Trench Map">
-        </div>
-
-        <!-- Metro Manila -->
-        <div class="gallery-item" style="grid-column: span 4;">
-            <img src="maps/Casaquite_MetroManila-1.png" alt="Metro Manila Map">
+        <div class="gallery-item">
+            <div class="map-container">
+                <img src="maps/CasaquiteBathymetricMap-1.png" alt="Philippine Trench Map">
+            </div>
+            <div class="map-title">Philippine Trench Bathymetry</div>
         </div>
     </div>
 
-    <!-- Modal -->
     <div id="imageModal" class="modal">
         <span class="close-modal">&times;</span>
         <div class="modal-content">
@@ -184,8 +205,7 @@
         const closeModalBtn = document.querySelector('.close-modal');
         const modalContent = document.querySelector('.modal-content');
 
-        // Open modal when clicking on images
-        document.querySelectorAll('.gallery-item img').forEach(img => {
+        document.querySelectorAll('.map-container img').forEach(img => {
             img.addEventListener('click', function() {
                 modal.style.display = 'block';
                 modalImg.src = this.src;
@@ -193,32 +213,27 @@
             });
         });
 
-        // Close modal when clicking the X button
         closeModalBtn.addEventListener('click', function(event) {
             event.stopPropagation();
             closeModal();
         });
 
-        // Close modal when clicking outside the image
         modal.addEventListener('click', function(event) {
             if (event.target === modal || event.target === modalContent) {
                 closeModal();
             }
         });
 
-        // Prevent modal from closing when clicking the image itself
         modalImg.addEventListener('click', function(event) {
             event.stopPropagation();
         });
 
-        // Close modal with escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
             }
         });
 
-        // Function to close modal
         function closeModal() {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
