@@ -98,16 +98,64 @@
             position: relative;
             width: 100%;
             height: 100%;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .modal-image-container {
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100%;
         }
 
         .modal-content img {
-            max-width: 95%;
+            max-width: 100%;
             max-height: 95%;
             object-fit: contain;
             cursor: default;
+        }
+
+        .modal-description {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            overflow-y: auto;
+            color: white;
+        }
+
+        .modal-description h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .modal-description p {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #e0e0e0;
+        }
+
+        .modal-description .metadata {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .metadata-item {
+            display: flex;
+            margin-bottom: 0.5rem;
+        }
+
+        .metadata-label {
+            font-weight: 500;
+            min-width: 120px;
+            color: #aaa;
         }
 
         .close-modal {
@@ -128,6 +176,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        @media (max-width: 1024px) {
+            .modal-content {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+            }
+            
+            .modal-image-container {
+                max-height: 60vh;
+            }
         }
 
         @media (max-width: 768px) {
@@ -196,11 +255,83 @@
     <div id="imageModal" class="modal">
         <span class="close-modal">&times;</span>
         <div class="modal-content">
-            <img id="modalImage" src="" alt="Full screen map">
+            <div class="modal-image-container">
+                <img id="modalImage" src="" alt="Full screen map">
+            </div>
+            <div class="modal-description">
+                <h2 id="modalTitle"></h2>
+                <div id="modalText"></div>
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Date Created:</span>
+                        <span id="modalDate"></span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Software Used:</span>
+                        <span id="modalSoftware"></span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Data Source:</span>
+                        <span id="modalSource"></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+        const mapDescriptions = {
+            'Casaquite_SouthEastAsiaFinal2-1.png': {
+                title: 'Southeast Asia Physical and Political',
+                description: 'A comprehensive visualization of Southeast Asia combining both physical and political features. This map highlights the region\'s diverse topography, from mountainous regions to maritime features, while clearly delineating political boundaries and major urban centers.',
+                date: 'January 2024',
+                software: 'ArcGIS Pro',
+                source: 'Natural Earth Data'
+            },
+            'Casaquite_MetroManila-1.png': {
+                title: 'Metro Manila Reference',
+                description: 'Detailed reference map of Metropolitan Manila showcasing major districts, transportation networks, and urban development patterns. This map provides a clear overview of the capital region\'s structure and organization.',
+                date: 'December 2023',
+                software: 'QGIS, Adobe Illustrator',
+                source: 'OpenStreetMap, Philippine Statistics Authority'
+            },
+            'Casaquite_PhilippinesGenRefFinal-1.png': {
+                title: 'Philippines General Reference',
+                description: 'A comprehensive reference map of the Philippines highlighting major cities, administrative boundaries, and key geographical features. This map serves as a general overview of the country\'s geography and political divisions.',
+                date: 'January 2024',
+                software: 'ArcGIS Pro',
+                source: 'Philippine GIS Data, Natural Earth Data'
+            },
+            'SubsurfaceMapDraftFinal2-1.png': {
+                title: 'Subsurface Analysis',
+                description: 'Technical map analyzing subsurface geological features and formations. This visualization combines multiple data layers to represent underground structures and characteristics.',
+                date: 'November 2023',
+                software: 'ArcGIS Pro, Global Mapper',
+                source: 'Geological Survey Data'
+            },
+            'GrandCanyon-1.png': {
+                title: 'Grand Canyon Overview',
+                description: 'Topographic visualization of the Grand Canyon, highlighting its dramatic elevation changes and geological features. The map emphasizes the canyon\'s scale and natural complexity.',
+                date: 'December 2023',
+                software: 'ArcGIS Pro',
+                source: 'USGS, National Park Service'
+            },
+            'BrightAngelAB_Map2-1.png': {
+                title: 'Bright Angel Trail',
+                description: 'Detailed trail map of the Bright Angel Trail in the Grand Canyon, showing elevation profiles, rest stops, and key points of interest along this historic hiking route.',
+                date: 'December 2023',
+                software: 'ArcGIS Pro, Adobe Illustrator',
+                source: 'National Park Service, USGS'
+            },
+            'CasaquiteBathymetricMap-1.png': {
+                title: 'Philippine Trench Bathymetry',
+                description: 'Bathymetric map visualizing the depths of the Philippine Trench, one of the deepest oceanic trenches in the world. This map reveals the dramatic underwater topography and geological features of this significant marine formation.',
+                date: 'January 2024',
+                software: 'ArcGIS Pro, Global Mapper',
+                source: 'GEBCO, Marine Research Data'
+            }
+        };
+
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
         const closeModalBtn = document.querySelector('.close-modal');
@@ -208,8 +339,22 @@
 
         document.querySelectorAll('.map-container img').forEach(img => {
             img.addEventListener('click', function() {
+                const fileName = this.src.split('/').pop();
+                const mapInfo = mapDescriptions[fileName] || {
+                    title: 'Map Details',
+                    description: 'Description coming soon...',
+                    date: '-',
+                    software: '-',
+                    source: '-'
+                };
+
                 modal.style.display = 'block';
                 modalImg.src = this.src;
+                document.getElementById('modalTitle').textContent = mapInfo.title;
+                document.getElementById('modalText').innerHTML = `<p>${mapInfo.description}</p>`;
+                document.getElementById('modalDate').textContent = mapInfo.date;
+                document.getElementById('modalSoftware').textContent = mapInfo.software;
+                document.getElementById('modalSource').textContent = mapInfo.source;
                 document.body.style.overflow = 'hidden';
             });
         });
