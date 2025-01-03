@@ -101,7 +101,7 @@
             display: grid;
             grid-template-columns: auto 400px;
             gap: 20px;
-            padding: 40px;
+            padding: 60px;
         }
 
         .modal-image-container {
@@ -110,11 +110,12 @@
             align-items: center;
             height: 100%;
             width: 100%;
+            padding: 20px;
         }
 
         .modal-content img {
-            max-width: 100%;
-            max-height: 100%;
+            max-width: 95%;
+            max-height: 90vh;
             object-fit: contain;
             cursor: default;
         }
@@ -184,7 +185,7 @@
         @media (max-width: 1024px) {
             .modal-content {
                 grid-template-columns: 1fr;
-                grid-template-rows: 1fr auto;
+                grid-template-rows: auto 1fr;
                 padding: 20px;
             }
             
