@@ -20,9 +20,10 @@
             background-color: black;
             color: white;
             font-family: 'Raleway', sans-serif;
-            padding: 2rem;
+            padding: clamp(1rem, 3vw, 2rem);
             position: relative;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Vintage border */
@@ -30,13 +31,15 @@
             content: '';
             position: fixed;
             inset: 0;
-            border: 8px double white;
+            border: clamp(4px, 1vw, 8px) double white;
             pointer-events: none;
             opacity: 0.2;
+            z-index: 10;
         }
 
         /* Container */
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
@@ -45,27 +48,30 @@
         /* Title Card */
         .title-card {
             text-align: center;
-            margin: 4rem 0;
+            margin: clamp(2rem, 5vw, 4rem) 0;
+            padding: 0 1rem;
         }
 
         .title-frame {
             border: 1px solid white;
-            padding: 3rem;
+            padding: clamp(1.5rem, 4vw, 3rem);
             display: inline-block;
             margin-bottom: 1rem;
+            max-width: 100%;
         }
 
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: 4.5rem;
+            font-size: clamp(2rem, 6vw, 4.5rem);
             margin-bottom: 1rem;
             letter-spacing: 0.1em;
-            white-space: nowrap;
+            white-space: normal;
+            line-height: 1.2;
         }
 
         .subtitle {
             font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
             letter-spacing: 0.2em;
             text-transform: uppercase;
         }
@@ -73,43 +79,45 @@
         /* Sections */
         .section {
             border: 1px solid white;
-            padding: 3rem;
-            margin-bottom: 4rem;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            margin-bottom: clamp(2rem, 4vw, 4rem);
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
+            width: 100%;
         }
 
         h2 {
             font-family: 'Cinzel', serif;
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
             color: white;
         }
 
         p {
             color: white;
             line-height: 1.8;
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin-bottom: 1.5rem;
         }
 
         /* Button */
         .maps-button {
             display: inline-block;
-            padding: 1.5rem 4rem;
+            padding: clamp(1rem, 2.5vw, 1.5rem) clamp(2rem, 5vw, 4rem);
             font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
             color: white;
             text-decoration: none;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
             transition: all 0.3s ease;
-            margin: 3rem auto;
+            margin: clamp(2rem, 4vw, 3rem) auto;
             text-align: center;
             display: block;
             width: fit-content;
+            max-width: 90%;
         }
 
         .maps-button:hover {
@@ -120,6 +128,7 @@
         /* Contact Section */
         .contact-section {
             text-align: center;
+            width: 100%;
         }
 
         .contact-links {
@@ -139,8 +148,14 @@
             padding: 0.75rem 1.5rem;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: clamp(0.875rem, 2vw, 1rem);
             transition: all 0.3s ease;
+            width: 100%;
+            word-break: break-all;
+        }
+
+        .contact-link svg {
+            min-width: 24px;
         }
 
         .contact-link:hover {
@@ -148,36 +163,45 @@
             transform: translateY(-2px);
         }
 
-        @media (max-width: 768px) {
+        /* Tablet Adjustments */
+        @media (min-width: 768px) {
+            .contact-link {
+                word-break: normal;
+            }
+
             h1 {
-                font-size: 3.5rem;
-            }
-            
-            h2 {
-                font-size: 2.5rem;
-            }
-
-            .subtitle {
-                font-size: 1.25rem;
-            }
-
-            p {
-                font-size: 1.125rem;
-            }
-
-            .maps-button {
-                font-size: 1.25rem;
-                padding: 1.25rem 3rem;
+                white-space: nowrap;
             }
         }
 
+        /* Mobile Adjustments */
         @media (max-width: 480px) {
-            h1 {
-                font-size: 2.5rem;
+            .title-frame {
+                padding: 1.5rem 1rem;
             }
 
             .section {
-                padding: 2rem;
+                padding: 1.5rem 1rem;
+            }
+
+            .contact-link {
+                flex-direction: row;
+                align-items: center;
+                padding: 0.75rem 1rem;
+            }
+
+            .contact-link svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        /* Touch Device Optimization */
+        @media (hover: none) {
+            .maps-button:active,
+            .contact-link:active {
+                background: rgba(255, 255, 255, 0.1);
+                transform: translateY(-2px);
             }
         }
     </style>
