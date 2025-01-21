@@ -1,346 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio website of Eulle Stann Casaquite - Geology and Geography student specializing in GIS and Technology">
-    <title>Eulle Stann Casaquite - Portfolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+import React from 'react';
+import { Globe2, Mail, School, Linkedin } from 'lucide-react';
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Raleway', sans-serif;
-            color: white;
-            background-color: black;
-            line-height: 1.6;
-        }
-
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background-image: url('maps/Casaquite_SouthEastAsiaFinal2-1.png');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-family: 'Cinzel', serif;
-            font-size: 6rem;
-            color: white;
-            letter-spacing: 0.5em;
-            text-transform: uppercase;
-            margin: 0;
-            padding: 0;
-            line-height: 1.4;
-        }
-
-        .content-section {
-            min-height: auto;
-            padding: 4rem 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .content-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: white;
-        }
-
-        .resume-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 4rem;
-            margin-top: 2rem;
-        }
-
-        .resume-left, .resume-right {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .pdf-container {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            overflow: hidden;
-            height: 32rem;
-            padding: 1.5rem;
-        }
-
-        .pdf-preview {
-            height: 100%;
-        }
-
-        .pdf-preview embed {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .about-content {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 12px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .about-text {
-            color: #fff;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            font-size: 1.25rem;
-        }
-
-        .map-button-container {
-            text-align: center;
-            padding: 3rem 0 1rem;
-        }
-
-        .map-button {
-            display: inline-block;
-            padding: 1.5rem 4rem;
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: white;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            margin: 2rem 0;
-        }
-
-        .map-button:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .contact-section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 3rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .contact-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            color: white;
-            text-decoration: none;
-            padding: 1.25rem 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            font-size: 1.125rem;
-            transition: all 0.3s ease;
-        }
-
-        .contact-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .contact-link svg {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
-
-        footer {
-            padding: 2rem;
-            text-align: center;
-            color: #666;
-        }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3.5rem;
-                letter-spacing: 0.3em;
-            }
-            
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .resume-container {
-                gap: 2rem;
-            }
-
-            .resume-left, .resume-right {
-                margin-bottom: 4rem;
-            }
-
-            .pdf-container {
-                height: 24rem;
-            }
-
-            .about-text {
-                font-size: 1.125rem;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .contact-link {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2.5rem;
-                letter-spacing: 0.2em;
-            }
-
-            .content-section {
-                padding: 4rem 1rem;
-            }
-
-            .pdf-container {
-                height: 20rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Eulle Stann<br>Casaquite</h1>
+const PortfolioPage = () => {
+  return (
+    <div className="min-h-screen bg-black text-white p-8">
+      {/* Vintage border pattern */}
+      <div className="fixed inset-0 border-8 border-double border-white pointer-events-none opacity-20" />
+      
+      {/* Main content container */}
+      <div className="max-w-4xl mx-auto relative">
+        {/* Title Card with vintage styling */}
+        <div className="text-center mb-16 mt-8">
+          <div className="border border-white p-8 inline-block mb-4">
+            <h1 className="text-5xl font-serif mb-2">
+              Eulle Stann Casaquite
+            </h1>
+            <div className="text-sm tracking-widest uppercase">CARTOGRAPHY PORTFOLIO</div>
+          </div>
         </div>
+
+        {/* Decorative divider */}
+        <div className="flex items-center justify-center mb-12">
+          <div className="w-16 h-px bg-white mx-2"></div>
+          <div className="w-2 h-2 border border-white rotate-45"></div>
+          <div className="w-16 h-px bg-white mx-2"></div>
+        </div>
+
+        {/* About Me Section */}
+        <div className="border border-white p-8 mb-12">
+          <h2 className="text-2xl font-serif mb-6 flex items-center justify-center">
+            <Globe2 className="mr-2" />
+            About Me
+          </h2>
+          <p className="text-gray-200 leading-relaxed font-light">
+            Welcome to my cartography portfolio! I currently am a senior student at Augustana College 
+            pursuing majors in Geology and Geography with a minor in GIS and Technology. 
+            Outside of school, you can find me playing videogames, and watching soccer. 
+            I also enjoy collecting vintage maps, old USGS topographic maps and National 
+            Geographic maps are among my favorite!
+          </p>
+        </div>
+
+        {/* Maps Button */}
+        <div className="text-center mb-12">
+          <a 
+            href="https://eullec.github.io/eulleC/maps.html"
+            className="inline-block border-2 border-white hover:bg-white hover:text-black text-white font-serif py-4 px-8 transition-colors duration-300"
+          >
+            View My Maps
+          </a>
+        </div>
+
+        {/* Contact Section */}
+        <div className="border border-white p-8">
+          <h2 className="text-2xl font-serif mb-6 text-center">Contact Me</h2>
+          <div className="space-y-6">
+            <a 
+              href="mailto:eullecasaquite@gmail.com"
+              className="flex items-center justify-center text-gray-200 hover:text-white transition-colors duration-300"
+            >
+              <Mail className="mr-2" />
+              eullecasaquite@gmail.com
+            </a>
+            <a 
+              href="mailto:eullecasaquite21@augustana.edu"
+              className="flex items-center justify-center text-gray-200 hover:text-white transition-colors duration-300"
+            >
+              <School className="mr-2" />
+              eullecasaquite21@augustana.edu
+            </a>
+            <a 
+              href="https://www.linkedin.com/in/eulle-stann-casaquite-8477341ab"
+              className="flex items-center justify-center text-gray-200 hover:text-white transition-color duration-300"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Linkedin className="mr-2" />
+              LinkedIn Profile
+            </a>
+          </div>
+        </div>
+
+        {/* Footer decorative element */}
+        <div className="mt-12 flex items-center justify-center">
+          <div className="w-24 h-px bg-white mx-2"></div>
+          <div className="w-3 h-3 border border-white rotate-45"></div>
+          <div className="w-24 h-px bg-white mx-2"></div>
+        </div>
+      </div>
     </div>
+  );
+};
 
-    <section id="resume" class="content-section">
-        <div class="resume-container">
-            <div class="resume-left">
-                <h2 class="section-title">Resume</h2>
-                <div class="pdf-container">
-                    <div class="pdf-preview">
-                        <embed src="Casaquite_CV_12_2024.pdf" type="application/pdf" width="100%" height="100%" />
-                    </div>
-                </div>
-            </div>
-            <div class="resume-right">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-content">
-                    <p class="about-text">
-                        I am a student at Augustana College pursuing majors in Geology and Geography with a minor in GIS and Technology. My passion lies in creating meaningful visualizations and maps that tell compelling stories about our world.
-                    </p>
-                    <p class="about-text">
-                        With a background in both Geology and Geography, I bring a unique perspective to cartographic design and geographical analysis.
-                    </p>
-                    <p class="about-text">
-                        Outside of school you can find me playing videogames, watching soccer and watching cartography tutorials.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="maps" class="content-section" style="padding-bottom: 0;">
-        <div class="map-button-container">
-            <a href="maps.html" class="map-button">View My Maps</a>
-        </div>
-    </section>
-
-    <section id="contact" class="content-section" style="padding-top: 0;">
-        <h2 class="section-title">Contact Me</h2>
-        <div class="contact-section">
-            <div class="contact-links">
-                <a href="mailto:eullecasaquite@gmail.com" class="contact-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                    </svg>
-                    eullecasaquite@gmail.com
-                </a>
-                <a href="https://www.linkedin.com/in/eulle-stann-casaquite-8477341ab" target="_blank" rel="noopener noreferrer" class="contact-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                        <rect x="2" y="9" width="4" height="12"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                    LinkedIn
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        © 2025 by Eulle Stann Casaquite - Work In Progress
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            document.querySelectorAll('.content-section').forEach((section) => {
-                observer.observe(section);
-            });
-        });
-    </script>
-</body>
-</html>
+export default PortfolioPage;
