@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eulle Stann Casaquite - Cartography Portfolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
     <style>
-        /* Base styles */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -17,9 +19,10 @@
             min-height: 100vh;
             background-color: black;
             color: white;
-            font-family: serif;
+            font-family: 'Raleway', sans-serif;
             padding: 2rem;
             position: relative;
+            line-height: 1.6;
         }
 
         /* Vintage border */
@@ -34,7 +37,7 @@
 
         /* Container */
         .container {
-            max-width: 64rem;
+            max-width: 1200px;
             margin: 0 auto;
             position: relative;
         }
@@ -42,108 +45,139 @@
         /* Title Card */
         .title-card {
             text-align: center;
-            margin: 2rem 0 4rem;
+            margin: 4rem 0;
         }
 
         .title-frame {
             border: 1px solid white;
-            padding: 2rem;
+            padding: 3rem;
             display: inline-block;
             margin-bottom: 1rem;
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
         }
 
         .subtitle {
-            font-size: 0.875rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-        }
-
-        /* Decorative Divider */
-        .divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 3rem 0;
-        }
-
-        .divider-line {
-            width: 4rem;
-            height: 1px;
-            background-color: white;
-            margin: 0 0.5rem;
-        }
-
-        .divider-diamond {
-            width: 0.5rem;
-            height: 0.5rem;
-            border: 1px solid white;
-            transform: rotate(45deg);
         }
 
         /* Sections */
         .section {
             border: 1px solid white;
-            padding: 2rem;
-            margin-bottom: 3rem;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
         }
 
         h2 {
-            font-size: 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            color: white;
         }
 
         p {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-            font-weight: 300;
+            color: white;
+            line-height: 1.8;
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
         }
 
         /* Button */
         .maps-button {
-            display: block;
-            width: fit-content;
-            margin: 3rem auto;
-            padding: 1rem 2rem;
-            border: 2px solid white;
+            display: inline-block;
+            padding: 1.5rem 4rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
             color: white;
             text-decoration: none;
-            font-family: serif;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
             transition: all 0.3s ease;
+            margin: 3rem auto;
+            text-align: center;
+            display: block;
+            width: fit-content;
         }
 
         .maps-button:hover {
-            background-color: white;
-            color: black;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
-        /* Contact Links */
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+        }
+
         .contact-links {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .contact-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255, 255, 255, 0.9);
+            gap: 1rem;
+            color: white;
             text-decoration: none;
-            transition: color 0.3s ease;
+            padding: 1.25rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
         }
 
         .contact-link:hover {
-            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
-        .contact-link svg {
-            margin-right: 0.5rem;
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.25rem;
+            }
+
+            p {
+                font-size: 1.125rem;
+            }
+
+            .maps-button {
+                font-size: 1.25rem;
+                padding: 1.25rem 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 2rem;
+            }
         }
     </style>
 </head>
@@ -155,13 +189,6 @@
                 <h1>Eulle Stann Casaquite</h1>
                 <div class="subtitle">CARTOGRAPHY PORTFOLIO</div>
             </div>
-        </div>
-
-        <!-- Decorative Divider -->
-        <div class="divider">
-            <div class="divider-line"></div>
-            <div class="divider-diamond"></div>
-            <div class="divider-line"></div>
         </div>
 
         <!-- About Section -->
@@ -208,13 +235,6 @@
                     LinkedIn Profile
                 </a>
             </div>
-        </div>
-
-        <!-- Footer Divider -->
-        <div class="divider">
-            <div class="divider-line"></div>
-            <div class="divider-diamond"></div>
-            <div class="divider-line"></div>
         </div>
     </div>
 </body>
