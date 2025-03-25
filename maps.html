@@ -30,14 +30,14 @@
             line-height: 1.6;
         }
 
-            .nav-header {
+        .nav-header {
             padding: 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         .nav-header a {
             color: var(--primary);
             text-decoration: none;
@@ -48,7 +48,11 @@
             align-items: center;
             gap: 8px;
         }
-        
+
+        .nav-header a:hover {
+            color: var(--light);
+        }
+
         .site-title {
             font-weight: 600;
             font-size: 1.2rem;
@@ -101,6 +105,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
         }
 
         .map-container:hover {
@@ -354,7 +359,6 @@
     </div>
 
     <div class="gallery-container">
-        <!-- Map items -->
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/11122024Final-1.png" alt="Uranium Mining in the Grand Canyon Region">
@@ -445,8 +449,8 @@
         
         <div class="gallery-item">
             <div class="map-container">
-                <img src="maps/orinoco.jpg" alt="Orinoco River Map">
-                <div class="map-date">Feb 2025</div>
+                <img src="maps/ORINOCO.pdf" alt="Orinoco River Map">
+                <div class="map-date">Mar 2025</div>
             </div>
             <div class="map-title">Orinoco River Basin</div>
         </div>
@@ -454,22 +458,22 @@
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/RoundelMap.jpg" alt="Roundel Map">
-                <div class="map-date">Feb 2025</div>
+                <div class="map-date">Mar 2025</div>
             </div>
-            <div class="map-title">Roundels Around The World</div>
+            <div class="map-title">Roundel Cartographic Art</div>
         </div>
         
         <div class="gallery-item">
             <div class="map-container">
-                <img src="maps/WhiteSideCOunty.png" alt="White Side County Map">
+                <img src="maps/WhiteSideCOUNTy.png" alt="White Side County Map">
                 <div class="map-date">Mar 2025</div>
             </div>
-            <div class="map-title">Whiteside County Elevation Map</div>
+            <div class="map-title">White Side County</div>
         </div>
     </div>
 
     <footer>
-        © 2025 Eulle Stann Casaquite | Cartography
+        © 2025 Eulle Stann Casaquite | Cartographic Works
     </footer>
 
     <div id="imageModal" class="modal">
@@ -564,20 +568,20 @@
                 software: 'ArcGIS Pro'
             },
             'orinoco.jpg': {
-                title: 'Orinoco River Basin',
+                title: 'Orinoco River Watershed',
                 description: 'This map explores the Orinoco River system, one of South America\'s most important rivers. The visualization highlights the river\'s extensive basin and its relationship to surrounding geographic features. The color gradient shows elevation changes, revealing how the river system carves through the varied topography of Venezuela and Colombia.',
-                date: 'February 2025',
+                date: 'March 2025',
                 software: 'ArcGIS Pro'
             },
             'RoundelMap.jpg': {
-                title: 'Roundels Around The World',
-                description: 'Description Coming Soon...',
-                date: 'February 2025',
+                title: 'Roundel Map',
+                description: 'Description Coming Soon..',
+                date: 'March 2025',
                 software: 'ArcGIS Pro'
             },
             'WhiteSideCOunty.png': {
-                title: 'White Side County',
-                description: 'Description Coming Soon...',
+                title: 'WhiteSide County Elevation Map',
+                description: 'Description Coming Soon',
                 date: 'March 2025',
                 software: 'ArcGIS Pro'
             }
