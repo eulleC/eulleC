@@ -283,6 +283,25 @@
             </div>
             <div class="map-title">Mississippi River Watershed</div>
         </div>
+        <!-- Newly added maps -->
+        <div class="gallery-item">
+            <div class="map-container">
+                <img src="maps/ORINOCO.pdf" alt="Orinoco River Map">
+            </div>
+            <div class="map-title">Orinoco River</div>
+        </div>
+        <div class="gallery-item">
+            <div class="map-container">
+                <img src="maps/RoundelMap.jpg" alt="Roundel Map">
+            </div>
+            <div class="map-title">Roundel Map</div>
+        </div>
+        <div class="gallery-item">
+            <div class="map-container">
+                <img src="maps/WhiteSideCOUNTy.png" alt="White Side County Map">
+            </div>
+            <div class="map-title">White Side County</div>
+        </div>
     </div>
 
     <div id="imageModal" class="modal">
@@ -374,6 +393,25 @@
                 description: 'A simple map of the Mississippi River watershed, the map displays all the tributaries of the Mississippi River revealing an extensive network of waterways that make up North America\'s largest watershed. Making this map was really cool and personal as I live near the Mississippi River, visualizing the scale of this watershed was really interesting to see.',
                 date: 'January 2025',
                 software: 'ArcGIS Pro'
+            },
+            // Newly added map descriptions (placeholders)
+            'ORINOCO.pdf': {
+                title: 'Orinoco River',
+                description: '',
+                date: '',
+                software: ''
+            },
+            'RoundelMap.jpg': {
+                title: 'Roundel Map',
+                description: '',
+                date: '',
+                software: ''
+            },
+            'WhiteSideCOUNTy.png': {
+                title: 'White Side County',
+                description: '',
+                date: '',
+                software: ''
             }
         };
 
@@ -395,9 +433,9 @@
                 modal.style.display = 'block';
                 modalImg.src = this.src;
                 document.getElementById('modalTitle').textContent = mapInfo.title;
-                document.getElementById('modalText').innerHTML = `<p>${mapInfo.description}</p>`;
-                document.getElementById('modalDate').textContent = mapInfo.date;
-                document.getElementById('modalSoftware').textContent = mapInfo.software;
+                document.getElementById('modalText').innerHTML = `<p>${mapInfo.description || 'Description coming soon...'}</p>`;
+                document.getElementById('modalDate').textContent = mapInfo.date || '-';
+                document.getElementById('modalSoftware').textContent = mapInfo.software || '-';
                 document.body.style.overflow = 'hidden';
             });
         });
