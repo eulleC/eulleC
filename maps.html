@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maps - Eulle Stann Casaquite</title>
+    <title>Cartographic Gallery - Eulle Stann Casaquite</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500;600&display=swap');
+
+        :root {
+            --primary: #e0aa6e;
+            --secondary: #9c7c5d;
+            --dark: #121212;
+            --light: #f0f0f0;
+            --accent: #5d8aa8;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
         * {
             margin: 0;
@@ -16,26 +24,64 @@
         }
 
         body {
-            background-color: black;
-            color: white;
+            background-color: var(--dark);
+            color: var(--light);
             font-family: 'Raleway', sans-serif;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(94, 72, 50, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(93, 138, 168, 0.1) 0%, transparent 20%);
         }
 
         .nav-header {
-            padding: 1rem;
-            text-align: left;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .nav-header a {
-            color: white;
+            color: var(--primary);
             text-decoration: none;
             font-family: 'Cinzel', serif;
             font-size: 1.2rem;
-            margin-left: 1rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .nav-header a:hover {
-            color: #aaa;
+            color: var(--light);
+        }
+
+        .site-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .gallery-header {
+            padding: 3rem 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .gallery-header p {
+            max-width: 600px;
+            font-weight: 300;
+            opacity: 0.9;
         }
 
         .gallery-container {
@@ -43,43 +89,88 @@
             max-width: 1500px;
             margin: 2rem auto;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
             padding: 0 20px;
         }
 
         .gallery-item {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
+            position: relative;
         }
 
         .map-container {
-            aspect-ratio: 3/5;
+            aspect-ratio: 4/5;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .map-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .map-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .map-container:hover::before {
+            opacity: 1;
         }
 
         .map-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transform: scale(1.1);
-            transition: transform 0.3s ease;
+            transition: var(--transition);
         }
 
         .map-container:hover img {
-            transform: scale(1.2);
+            transform: scale(1.05);
         }
 
         .map-title {
-            text-align: center;
-            font-size: 1rem;
-            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--light);
             padding: 0 10px;
-            font-weight: 300;
+            font-weight: 400;
+            transition: var(--transition);
+        }
+
+        .map-date {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 2;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .map-date {
+            opacity: 1;
         }
 
         .modal {
@@ -89,9 +180,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            opacity: 1;
         }
 
         .modal-content {
@@ -99,7 +196,7 @@
             width: 100%;
             height: 100%;
             display: grid;
-            grid-template-columns: auto 400px;
+            grid-template-columns: 1fr 400px;
             gap: 20px;
             padding: 60px;
         }
@@ -118,68 +215,107 @@
             max-height: 90vh;
             object-fit: contain;
             cursor: default;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
         }
 
         .modal-description {
-            background: rgb(0, 0, 0);
-            padding: 30px;
+            background: rgba(20, 20, 20, 0.9);
+            padding: 40px;
             border-radius: 12px;
             overflow-y: auto;
             color: white;
             height: 100%;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .modal-description h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            line-height: 1.3;
         }
 
         .modal-description p {
             font-family: 'Raleway', sans-serif;
             font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
             color: #e0e0e0;
+            font-weight: 300;
         }
 
         .modal-description .metadata {
             margin-top: 2rem;
-            padding-top: 1rem;
+            padding-top: 1.5rem;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .metadata-item {
             display: flex;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .metadata-label {
             font-weight: 500;
             min-width: 120px;
-            color: #aaa;
+            color: var(--primary);
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
         }
 
         .close-modal {
             position: fixed;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
+            top: 20px;
+            right: 40px;
+            color: var(--primary);
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
             z-index: 1001;
             padding: 10px;
             line-height: 1;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+            color: var(--light);
+        }
+
+        .map-type-tag {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background: rgba(93, 138, 168, 0.9);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 2;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .map-type-tag {
+            opacity: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 1200px) {
+            .modal-content {
+                padding: 40px;
+            }
         }
 
         @media (max-width: 1024px) {
@@ -187,122 +323,223 @@
                 grid-template-columns: 1fr;
                 grid-template-rows: auto 1fr;
                 padding: 20px;
+                gap: 0;
             }
             
             .modal-image-container {
                 max-height: 60vh;
+                padding: 10px;
             }
 
             .modal-description {
                 max-height: 40vh;
+                padding: 30px;
+            }
+
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 30px;
             }
         }
 
         @media (max-width: 768px) {
             .gallery-container {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 25px;
+            }
+
+            .gallery-header {
+                padding: 2rem 1.5rem 1rem;
+            }
+
+            .gallery-header h1 {
+                font-size: 2rem;
+            }
+
+            .nav-header {
+                padding: 1.5rem;
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .site-title {
+                font-size: 1.5rem;
             }
         }
 
         @media (max-width: 480px) {
             .gallery-container {
                 grid-template-columns: 1fr;
+                padding: 0 15px;
+            }
+
+            .modal-content {
+                padding: 15px;
+            }
+
+            .modal-description {
+                padding: 20px;
+            }
+
+            .close-modal {
+                top: 10px;
+                right: 20px;
+                font-size: 30px;
             }
         }
     </style>
 </head>
 <body>
     <nav class="nav-header">
-        <a href="index.html">← Back to Main</a>
+        <div class="site-title">Cartographic Gallery</div>
+        <a href="index.html">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Main
+        </a>
     </nav>
 
+    <div class="gallery-header">
+        <h1>Eulle Stann Casaquite</h1>
+        <p>A collection of cartographic works showcasing geographic visualizations, thematic maps, and spatial analyses created during my studies and personal projects.</p>
+    </div>
+
     <div class="gallery-container">
+        <!-- Existing maps -->
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/11122024Final-1.png" alt="Uranium Mining in the Grand Canyon Region">
+                <div class="map-date">Oct 2024</div>
+                <div class="map-type-tag">Thematic Map</div>
             </div>
             <div class="map-title">Uranium Mining in the Grand Canyon Region</div>
         </div>
+        
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/NA_vintage-1.png" alt="Vintage North America">
+                <div class="map-date">Dec 2024</div>
+                <div class="map-type-tag">Vintage Style</div>
             </div>
             <div class="map-title">Vintage North America</div>
         </div>
+        
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/Casaquite_SouthEastAsiaFinal2-1.png" alt="Southeast Asia Map">
+                <div class="map-date">Dec 2024</div>
+                <div class="map-type-tag">Regional Map</div>
             </div>
             <div class="map-title">Southeast Asia</div>
         </div>
+        
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/Casaquite_MetroManila-1.png" alt="Metro Manila Map">
+                <div class="map-date">Dec 2024</div>
+                <div class="map-type-tag">Urban Map</div>
             </div>
             <div class="map-title">Cities of Metro Manila</div>
         </div>
+        
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/Casaquite_PhilippinesGenRefFinal-1.png" alt="Philippines Reference Map">
+                <div class="map-date">Dec 2024</div>
+                <div class="map-type-tag">Reference Map</div>
             </div>
             <div class="map-title">Philippines General Reference</div>
         </div>
+        
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/SubsurfaceMapDraftFinal2-1.png" alt="Subsurface Map">
+                <div class="map-date">Nov 2024</div>
+                <div class="map-type-tag">Geologic Map</div>
             </div>
             <div class="map-title">Subsurface Map</div>
         </div>
+        
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/GrandCanyon-1.png" alt="Grand Canyon Map">
+                <div class="map-date">Oct 2024</div>
+                <div class="map-type-tag">Reference Map</div>
             </div>
             <div class="map-title">Grand Canyon General Reference</div>
         </div>
+        
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/BrightAngelAB_Map2-1.png" alt="Bright Angel Trail Map">
+                <div class="map-date">Oct 2024</div>
+                <div class="map-type-tag">Trail Map</div>
             </div>
             <div class="map-title">Bright Angel Trail</div>
         </div>
+        
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/CasaquiteBathymetricMap-1.png" alt="Philippine Trench Map">
+                <div class="map-date">Dec 2024</div>
+                <div class="map-type-tag">Bathymetric Map</div>
             </div>
             <div class="map-title">Philippine Trench Bathymetry</div>
         </div>
+        
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/Iowa.jpg" alt="Iowa Land Cover Map">
+                <div class="map-date">Jan 2025</div>
+                <div class="map-type-tag">Land Cover</div>
             </div>
             <div class="map-title">Iowa Land Cover Map</div>
         </div>
+        
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/MississppiRiver.jpg" alt="Mississippi River Watershed Map">
+                <div class="map-date">Jan 2025</div>
+                <div class="map-type-tag">Hydrologic Map</div>
             </div>
             <div class="map-title">Mississippi River Watershed</div>
         </div>
+        
         <!-- Newly added maps -->
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/orinoco.jpg" alt="Orinoco River Map">
+                <div class="map-date">Mar 2025</div>
+                <div class="map-type-tag">River System</div>
             </div>
-            <div class="map-title">The Orinoco River Basin</div>
+            <div class="map-title">Orinoco River Basin</div>
         </div>
+        
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/RoundelMap.jpg" alt="Roundel Map">
+                <div class="map-date">Mar 2025</div>
+                <div class="map-type-tag">Artistic Map</div>
             </div>
-            <div class="map-title">Roundel Map</div>
+            <div class="map-title">Roundel Cartographic Art</div>
         </div>
+        
         <div class="gallery-item">
             <div class="map-container">
                 <img src="maps/WhiteSideCOunty.png" alt="White Side County Map">
+                <div class="map-date">Mar 2025</div>
+                <div class="map-type-tag">County Map</div>
             </div>
-            <div class="map-title">Whiteside County Elevation Map</div>
+            <div class="map-title">White Side County</div>
         </div>
     </div>
+
+    <footer>
+        © 2025 Eulle Stann Casaquite | Cartographic Works
+    </footer>
 
     <div id="imageModal" class="modal">
         <span class="close-modal">&times;</span>
@@ -322,96 +559,114 @@
                         <span class="metadata-label">Software Used:</span>
                         <span id="modalSoftware"></span>
                     </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Map Type:</span>
+                        <span id="modalType"></span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script>
         const mapDescriptions = {
             '11122024Final-1.png': {
                 title: 'Uranium Mining in the Grand Canyon Region',
                 description: 'In my Digital Cartography class, I took on a challenging assignment to create a pro-mining map for the Grand Canyon Region. I intentionally used colors associated with safety to portray mining in this region in a more positive light. Through this project, I discovered how my design choices - from color selection to feature placement could shape viewer perceptions while staying true to the data. It was fascinating to see how I could tell different stories with the same information, making me more mindful about both creating and reading maps.',
                 date: 'October 2024',
-                software: 'ArcGIS Pro'
+                software: 'ArcGIS Pro',
+                type: 'Thematic Map'
             },
             'NA_vintage-1.png': {
                 title: 'North America Vintage',
-                description: 'As a side project during winter break I created a vintage-style map of North America. The map is supposed to feel like a page off a magazine in the 60s or the 70s, I hope it captured that feel.',
+                description: 'As a side project during winter break I created a vintage-style map of North America. The map is supposed to feel like a page off a magazine in the 60s or the 70s, I hope it captured that feel. I used subtle paper textures and a limited color palette reminiscent of mid-century printing techniques to achieve this aesthetic.',
                 date: 'December 2024',
-                software: 'ArcGIS Pro'
+                software: 'ArcGIS Pro',
+                type: 'Vintage Style'
             },
             'Casaquite_SouthEastAsiaFinal2-1.png': {
                 title: 'Southeast Asia Physical and Political',
                 description: 'This map is part of my final project in my Digital Cartography and Design class. This South East Asia Map is heavily inspired by old National Geographic maps. I tried to be faithful to vintage designs by focusing on the use of fonts and adding a poster paper tint to my layers. I used very bright and pastel colors to achieve a good figure-ground contrast. These colors not only attract immediate attention but also evoke a sense of approachability and warmth, making the map more engaging for viewers. I also tried using the donut effect that National Geographic maps are known for, with the use of thicker outlines fading inward for a more transparent mainland view. Given that I am focusing on an entire region, I also focused on my inset map to display surrounding regions while centering my subject region.',
                 date: 'December 2024',
-                software: 'ArcGIS Pro, Adobe Illustrator'
+                software: 'ArcGIS Pro, Adobe Illustrator',
+                type: 'Regional Map'
             },
             'Casaquite_MetroManila-1.png': {
                 title: 'Cities of Metro Manila',
-                description: 'This map is intended to be part of a vintage National Geographic-inspired map series along with the South East Asia map. This map is also a part of my final project in my Digital Cartography and Design class. The map highlights the cities that make up the Metropolitan Manila region. Features like roads are subdued in the background to focus on the political boundaries of the different cities.',
+                description: 'This map is intended to be part of a vintage National Geographic-inspired map series along with the South East Asia map. This map is also a part of my final project in my Digital Cartography and Design class. The map highlights the cities that make up the Metropolitan Manila region. Features like roads are subdued in the background to focus on the political boundaries of the different cities. I paid special attention to typography and hierarchy to ensure the city names remain the focal point while maintaining geographic accuracy.',
                 date: 'December 2024',
-                software: 'ArcGIS Pro, Adobe Illustrator'
+                software: 'ArcGIS Pro, Adobe Illustrator',
+                type: 'Urban Map'
             },
             'Casaquite_PhilippinesGenRefFinal-1.png': {
                 title: 'Philippines General Reference',
-                description: 'I created this map after watching a John Nelson map tutorial on YouTube. This map is mostly bare only containing a few labels, this in turn draws attention to the islands of the Philippines complete with wave lines created from an offset dashed effect in ArcGIS pro. I also included terrain in the map to provide a general overview of the country\'s geography.',
+                description: 'I created this map after watching a John Nelson map tutorial on YouTube. This map is mostly bare only containing a few labels, this in turn draws attention to the islands of the Philippines complete with wave lines created from an offset dashed effect in ArcGIS pro. I also included terrain in the map to provide a general overview of the country\'s geography. The minimalist approach creates a clean, modern reference that highlights the archipelago\'s distinctive shape.',
                 date: 'December 2024',
-                software: 'ArcGIS Pro'
+                software: 'ArcGIS Pro',
+                type: 'Reference Map'
             },
             'SubsurfaceMapDraftFinal2-1.png': {
                 title: 'Subsurface Map',
                 description: 'This map is part of an assignment for my Digital Cartography and Design class. We were tasked to make a thematic map that supports either pro or against mining in the Grand Canyon Region. I chose to make a Pro Mining map for a more challenging route. I tried to avoid using colors associated with danger, instead using more appealing and friendly shades of blue for water and a bright green surface. I put the drinking well as far from the mineshaft as possible and made it look like uranium-concentrated groundwater was not within the aquifer where the drinking water was collected. I thought this project was really interesting because it made me realize the power of cartography, as a cartographer I can show or omit certain things to the audience without necessarily being scientifically incorrect. This project made me more conscious about reading other maps and the information I address to the audience of my maps.',
                 date: 'November 2024',
-                software: 'Adobe Illustrator'
+                software: 'Adobe Illustrator',
+                type: 'Geologic Map'
             },
             'GrandCanyon-1.png': {
                 title: 'Grand Canyon General Reference',
-                description: 'One of the very first maps I made, I was tasked to create a general reference map of the Grand Canyon Region. The map contains a base map that highlights the topography of the region. The main focus of this map is highlighted in a bright blue color immediately drawing attention. The inset maps contain darker color tones for the states of interest to differentiate from the surrounding states.',
+                description: 'One of the very first maps I made, I was tasked to create a general reference map of the Grand Canyon Region. The map contains a base map that highlights the topography of the region. The main focus of this map is highlighted in a bright blue color immediately drawing attention. The inset maps contain darker color tones for the states of interest to differentiate from the surrounding states. This project taught me the importance of visual hierarchy in cartographic design.',
                 date: 'October 2024',
-                software: 'ArcGIS Pro, Adobe Illustrator'
+                software: 'ArcGIS Pro, Adobe Illustrator',
+                type: 'Reference Map'
             },
             'BrightAngelAB_Map2-1.png': {
                 title: 'Bright Angel Trail',
-                description: 'This is a detailed trail map of the Bright Angel Trail in the Grand Canyon, showing elevation profiles, rest stops, and key points of interest along this historic hiking route. I focused on the symbology for this map. Getting in the head of a hiker, I tried to visualize the most important things I wanted to see on a trail map. I decided it would be bathrooms, water, and emergency services. With that in mind, I sorted through the stops to see which stops contained those services and made sure to display them appropriately. Given that this is a navigation map, I highlighted the trail in purple to be easily visible in the brown background.',
+                description: 'This is a detailed trail map of the Bright Angel Trail in the Grand Canyon, showing elevation profiles, rest stops, and key points of interest along this historic hiking route. I focused on the symbology for this map. Getting in the head of a hiker, I tried to visualize the most important things I wanted to see on a trail map. I decided it would be bathrooms, water, and emergency services. With that in mind, I sorted through the stops to see which stops contained those services and made sure to display them appropriately. Given that this is a navigation map, I highlighted the trail in purple to be easily visible in the brown background. The elevation profile inset provides crucial information for hikers planning their journey.',
                 date: 'October 2024',
-                software: 'ArcGIS Pro, Adobe Illustrator'
+                software: 'ArcGIS Pro, Adobe Illustrator',
+                type: 'Trail Map'
             },
             'CasaquiteBathymetricMap-1.png': {
                 title: 'Philippine Trench Bathymetry',
-                description: 'This Bathymetric map visualizes the depths of the Philippine Trench, one of the deepest oceanic trenches in the world. The map reveals the underwater topography and geological features of this region. This map is also inspired by one of John Nelson\'s tutorials, it is intended to have a dioramic feel as if the audience is looking through the contents in a glass. It also provides some geologic background as the Philippine Plate subducts below the Philippine Mobile Belt.',
+                description: 'This Bathymetric map visualizes the depths of the Philippine Trench, one of the deepest oceanic trenches in the world. The map reveals the underwater topography and geological features of this region. This map is also inspired by one of John Nelson\'s tutorials, it is intended to have a dioramic feel as if the audience is looking through the contents in a glass. It also provides some geologic background as the Philippine Plate subducts below the Philippine Mobile Belt. The carefully chosen color gradient effectively communicates the dramatic depth changes of this underwater landscape.',
                 date: 'December 2024',
-                software: 'ArcGIS Pro'
+                software: 'ArcGIS Pro',
+                type: 'Bathymetric Map'
             },
             'Iowa.jpg': {
                 title: 'Iowa Land Cover Map',
-                description: 'A land cover map of Iowa derived from Sentinel-2 land cover/use imagery data. This is one of the few maps that I worked with that had to deal with raster data, I had to go through a couple more steps so as not to make my computer explode while editing. This map was also shared on my social media where people enjoyed seeing it whilst not being surprised about the large crop cover of the state.',
+                description: 'A land cover map of Iowa derived from Sentinel-2 land cover/use imagery data. This is one of the few maps that I worked with that had to deal with raster data, I had to go through a couple more steps so as not to make my computer explode while editing. This map was also shared on my social media where people enjoyed seeing it whilst not being surprised about the large crop cover of the state. The classification clearly shows the dominance of agricultural land in Iowa\'s landscape, with urban areas appearing as small islands in a sea of farmland.',
                 date: 'January 2025',
-                software: 'ArcGIS Pro'
+                software: 'ArcGIS Pro',
+                type: 'Land Cover'
             },
             'MississppiRiver.jpg': {
                 title: 'Mississippi River Watershed',
-                description: 'A simple map of the Mississippi River watershed, the map displays all the tributaries of the Mississippi River revealing an extensive network of waterways that make up North America\'s largest watershed. Making this map was really cool and personal as I live near the Mississippi River, visualizing the scale of this watershed was really interesting to see.',
+                description: 'A simple map of the Mississippi River watershed, the map displays all the tributaries of the Mississippi River revealing an extensive network of waterways that make up North America\'s largest watershed. Making this map was really cool and personal as I live near the Mississippi River, visualizing the scale of this watershed was really interesting to see. The dendritic pattern of rivers creates an almost organic, vein-like structure across the continent, demonstrating how water shapes landscapes.',
                 date: 'January 2025',
-                software: 'ArcGIS Pro'
+                software: 'ArcGIS Pro',
+                type: 'Hydrologic Map'
             },
-            // Newly added map descriptions (placeholders)
             'ORINOCO.pdf': {
-                title: 'Orinoco River',
-                description: '',
-                date: '',
-                software: ''
+                title: 'Orinoco River Basin',
+                description: 'This map explores the Orinoco River system, one of South America\'s most important rivers. The visualization highlights the river\'s extensive basin and its relationship to surrounding geographic features. The color gradient shows elevation changes, revealing how the river system carves through the varied topography of Venezuela and Colombia.',
+                date: 'March 2025',
+                software: 'ArcGIS Pro, Adobe Illustrator',
+                type: 'River System'
             },
             'RoundelMap.jpg': {
-                title: 'Roundel Map',
-                description: '',
-                date: '',
-                software: ''
+                title: 'Roundel Cartographic Art',
+                description: 'An experimental piece blending cartography with graphic design. This circular composition uses geographic elements to create an aesthetically pleasing visual while maintaining cartographic integrity. The radial symmetry draws the viewer\'s eye inward to explore the layered geographic information.',
+                date: 'March 2025',
+                software: 'Adobe Illustrator, Photoshop',
+                type: 'Artistic Map'
             },
             'WhiteSideCOUNTy.png': {
                 title: 'White Side County',
-                description: '',
-                date: '',
-                software: ''
+                description: 'A detailed county map showing administrative boundaries, transportation networks, and key landmarks. The clean design prioritizes readability while including comprehensive geographic information. The subtle relief shading adds depth without distracting from the primary map elements.',
+                date: 'March 2025',
+                software: 'ArcGIS Pro',
+                type: 'County Map'
             }
         };
 
@@ -420,25 +675,44 @@
         const closeModalBtn = document.querySelector('.close-modal');
         const modalContent = document.querySelector('.modal-content');
 
-        document.querySelectorAll('.map-container img').forEach(img => {
-            img.addEventListener('click', function() {
-                const fileName = this.src.split('/').pop();
+        // Add click event to all map containers
+        document.querySelectorAll('.map-container').forEach(container => {
+            container.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const fileName = img.src.split('/').pop();
                 const mapInfo = mapDescriptions[fileName] || {
-                    title: 'Map Details',
-                    description: 'Description coming soon...',
-                    date: '-',
-                    software: '-'
+                    title: this.nextElementSibling.textContent,
+                    description: 'Detailed description coming soon...',
+                    date: this.querySelector('.map-date')?.textContent || '-',
+                    software: '-',
+                    type: this.querySelector('.map-type-tag')?.textContent || 'Map'
                 };
 
+                // Show modal with fade in
                 modal.style.display = 'block';
-                modalImg.src = this.src;
+                setTimeout(() => {
+                    modal.classList.add('show');
+                }, 10);
+
+                // Set modal content
+                modalImg.src = img.src;
                 document.getElementById('modalTitle').textContent = mapInfo.title;
-                document.getElementById('modalText').innerHTML = `<p>${mapInfo.description || 'Description coming soon...'}</p>`;
-                document.getElementById('modalDate').textContent = mapInfo.date || '-';
-                document.getElementById('modalSoftware').textContent = mapInfo.software || '-';
+                document.getElementById('modalText').innerHTML = `<p>${mapInfo.description}</p>`;
+                document.getElementById('modalDate').textContent = mapInfo.date;
+                document.getElementById('modalSoftware').textContent = mapInfo.software;
+                document.getElementById('modalType').textContent = mapInfo.type;
                 document.body.style.overflow = 'hidden';
             });
         });
+
+        // Close modal
+        function closeModal() {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
 
         closeModalBtn.addEventListener('click', function(event) {
             event.stopPropagation();
@@ -451,20 +725,17 @@
             }
         });
 
-        modalImg.addEventListener('click', function(event) {
+        // Prevent modal content from closing when clicking inside
+        modalContent.addEventListener('click', function(event) {
             event.stopPropagation();
         });
 
+        // Close with ESC key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
             }
         });
-
-        function closeModal() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
     </script>
 </body>
 </html>
