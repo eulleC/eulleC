@@ -1,1 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posters - Eulle Stann Casaquite</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #2c3e5093;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .poster-section {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 40px rgba(148, 24, 24, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            align-items: start;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .poster-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .poster-content h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        .poster-abstract {
+            color: #7f8c8d;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .poster-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: white;
+            color: #2c3e50;
+            border: 2px solid #2c3e50;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: #2c3e50;
+            border: 2px solid #2c3e50;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                padding: 20px;
+                flex-direction: row;
+            }
+
+            .nav-links {
+                gap: 25px;
+            }
+
+            .poster-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .poster-content h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                display: none;
+            }
+
+            .poster-content h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="logo">EULLEC</div>
+        <div class="nav-links">
+            <a href="about.html">About</a>
+            <a href="maps.html">Maps</a>
+            <a href="porter.html" class="active">Posters</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sample Poster 1 -->
+        <div class="poster-section">
+            <div class="poster-content">
+                <h2>PHILIPPINE VOLCANIC HAZARDS: A MODIFIED APPROACH OF THE VPI30 CALCULATION USING GIS EXTRACTION TOOLS AND SENTINEL-2 IMAGERY DATA
+                </h2>
+                <p class="poster-abstract">
+                    The Volcano Population Index at 30 kilometers (VPI30) is a key metric used in the National Volcano Threat Assessment (NVTA) to estimate the population at risk within a 30-kilometer radius of an active volcano. This metric is especially important to the Philippines which is home to more than 300 volcanoes, 24 of which are active. To support research and development on the mitigation of volcanic-related disasters, the Philippine Institute of Volcanology and Seismology (PHIVOLCS) uses a modified version of the VPI30 to fit the Philippines setting. The current Philippine VPI30 methodology assumes uniform distribution across barangay (village) boundaries. This study aims to improve the existing methods through the use of high-resolution Sentinel-2 satellite imagery and geospatial analysis techniques. This is investigated to enhance understanding of the population distribution which is especially important in rural areas where households are generally observed to be clustered. Using land classification models, the built-area pixels within village boundaries intersecting the 30-kilometer buffer zone are identified. These built-area pixels will be proxies for human settlement and population. The ratio of built-area pixels inside the buffer zone to the total built-area pixels for each village is then calculated, the result is multiplied by the village population to get a more refined estimate of population distribution. Using this modified VPI30 methodology, a representative village yielded at least a 70% decrease in calculated exposed population. While the method marks an improvement in identifying exposed populations, it has some limitations. The reliance on broad land classifications, such as "built areas," can impact precision, particularly in distinguishing between residential and non-residential structures. Future work will focus on refining land classification models to better identify housing clusters and validate consistency when applied to multiple villages.
+                </p>
+            </div>
+            <div class="poster-actions">
+                <a href="https://gsa.confex.com/gsa/2025NE/webprogram/Paper407947.html" class="btn btn-primary">View Abstract Page</a>
+                <a href="Poster_Pictures/Casaquite_2025_GSA_V_FINAL.pdf" class="btn btn-secondary">View Poster</a>
+            </div>
+        </div>
+
+        <!-- Sample Poster 2 -->
+        <div class="poster-section">
+            <div class="poster-content">
+                <h2>UBIQUITOUS MICROPLASTICS IN FLUVIAL SEDIMENTS OF URBAN STREAM SYSTEMS IN DAVENPORT AND BETTENDORF, IOWA</h2>
+                <p class="poster-abstract">
+                    This research delves into the pervasive issue of microplastic pollution, aiming to provide a more comprehensive understanding of its occurrence in urban stream sediments. Microplastics are generally defined as plastic particles less than 5 mm in diameter. Microplastics can be derived from diverse sources, and once released in the environment they can persist for years, posing potential threats to the ecosystems. Study sites are located within three small urban watersheds in Davenport and Bettendorf, IA: Goose, Pheasant, and Silver Creeks, all tributaries of Duck Creek and the Mississippi River. All sites are in close proximity to urban communities and are home to a diverse assemblage of aquatic organisms. 50 grams of sediment were collected for each sample from sedimentary banks, which were generally sandy and non-vegetated. Samples were processed by sieving, density separation, organic digestion, and vacuum filtration. Nile Red Dye was added to each sample to facilitate the identification and quantification of microplastics. All study sites contained microplastics in the sediments, with microplastic concentrations generally increasing downstream in each system. These findings underscore the need for continued efforts to monitor microplastic pollution in bed load and suspended load sediments and to investigate their potential impacts on ecosystems.
+                </p>
+            </div>
+            <div class="poster-actions">
+                <a href="https://gsa.confex.com/gsa/2024NC/meetingapp.cgi/Paper/399094" class="btn btn-primary">View Abstract Page</a>
+                <a href="Poster_Pictures/Casaquite_POSTER_GSA.pdf" class="btn btn-secondary">View Poster</a>
+            </div>
+        </div>
+
+        <!-- Sample Poster 3 -->
+        <div class="poster-section">
+            <div class="poster-content">
+                <h2>STREAM ASSESSMENT OF MICROPLASTICS IN QUAD CITY WATERSHEDS </h2>
+                <p class="poster-abstract">
+                    Microplastics, small plastic particles measuring less than 5 millimeters in diameter, have
+                    become a growing environmental concern in recent years. These particles can originate from
+                    various sources, and when these particles are released into the environment, they can persist
+                    for years, potentially damaging ecosystems as they accumulate. Urban stream networks in the
+                    Quad Cities area (Illinois and Iowa) drain directly or indirectly to the Mississippi River.
+                    Microplastic sampling of these streams is essential for further understanding the potential
+                    dangers in a water system in which residents of the Quad Cities interact. For the purpose of
+                    this project, 19 sites were sampled, each categorized as agricultural, urban, natural, or mixed.
+                    Samples were collected directly from 19 select sites with 946 mL mason jars. Samples were
+                    then filtered and finally dyed with Nile red dye for identification. The samples were identified
+                    using a microscope modified with a yellow film filter and a 470 nm flashlight. After the
+                    analysis, we observed that microplastics were found in all of our water samples. We quantified
+                    microplastics based on fragments and fibers found, each being considered a different category.
+                    We identified a correlation between microplastic counts and site types. Streams within an
+                    urban setting were found to have higher concentrations of microplastics compared to sites
+                    within a natural and agricultural setting. Overall completion of this pilot project took 4 weeks,
+                    though a larger sample size and more sites representative of the categories could be sampled in
+                    the future. It is important that sources of microplastics be found and concentrations better
+                    understood, especially in communities that constantly interact with their watersheds.
+                    Identifying sources and levels of microplastics is key to future understanding of the hazards
+                    that they pose within our ecosystems.</p>
+            </div>
+            <div class="poster-actions">
+                <a href="http://m-r-r-c.org/Proceedings/2023_MRRC_proceedings.pdf" class="btn btn-primary">View Abstract Page</a>
+                <a href="Poster_Pictures/MicroplasticsPoster413 (1).pdf" class="btn btn-secondary">View Poster</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
